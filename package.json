@@ -145,8 +145,8 @@
     "react-lifecycles-compat": "^3.0.4"
   },
   "peerDependencies": {
-    "react": "^15.3.0 || ^16.0.0-alpha",
-    "react-dom": "^15.3.0 || ^16.0.0-alpha"
+    "react": "^15.3.0 || ^16.0.0-alpha || ^17.0.1",
+    "react-dom": "^15.3.0 || ^16.0.0-alpha || ^17.0.1"
   },
   "browserify": {
     "transform": [
