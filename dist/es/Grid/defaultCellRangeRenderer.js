@@ -1,7 +1,10 @@
+/*:: import type {CellRangeRendererParams} from './types';*/
+import React from 'react';
 /**
  * Default implementation of cellRangeRenderer used by Grid.
  * This renderer supports cell-caching while the user is scrolling.
  */
+
 export default function defaultCellRangeRenderer(_ref) {
   var cellCache = _ref.cellCache,
       cellRenderer = _ref.cellRenderer,
@@ -105,6 +108,12 @@ export default function defaultCellRangeRenderer(_ref) {
         warnAboutMissingStyle(parent, renderedCell);
       }
 
+      if (!renderedCell.props.role) {
+        renderedCell = React.cloneElement(renderedCell, {
+          role: 'gridcell'
+        });
+      }
+
       renderedCells.push(renderedCell);
     }
   }
@@ -128,5 +137,3 @@ function warnAboutMissingStyle(parent, renderedCell) {
     }
   }
 }
-
-import { bpfrpt_proptype_CellRangeRendererParams } from "./types";

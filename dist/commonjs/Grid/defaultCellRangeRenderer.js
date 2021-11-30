@@ -1,11 +1,15 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports["default"] = defaultCellRangeRenderer;
 
-var _types = require("./types");
+var _react = _interopRequireDefault(require("react"));
+
+/*:: import type {CellRangeRendererParams} from './types';*/
 
 /**
  * Default implementation of cellRangeRenderer used by Grid.
@@ -112,6 +116,12 @@ function defaultCellRangeRenderer(_ref) {
 
       if (process.env.NODE_ENV !== 'production') {
         warnAboutMissingStyle(parent, renderedCell);
+      }
+
+      if (!renderedCell.props.role) {
+        renderedCell = _react["default"].cloneElement(renderedCell, {
+          role: 'gridcell'
+        });
       }
 
       renderedCells.push(renderedCell);

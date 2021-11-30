@@ -1,4 +1,5 @@
 "use strict";
+'no babel-plugin-flow-react-proptypes';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -7,8 +8,6 @@ exports.registerScrollListener = registerScrollListener;
 exports.unregisterScrollListener = unregisterScrollListener;
 
 var _requestAnimationTimeout = require("../../utils/requestAnimationTimeout");
-
-var _WindowScroller = require("../WindowScroller.js");
 
 var mountedInstances = [];
 var originalBodyPointerEvents = null;
@@ -45,7 +44,9 @@ function enablePointerEventsAfterDelay() {
   disablePointerEventsTimeoutId = (0, _requestAnimationTimeout.requestAnimationTimeout)(enablePointerEventsAfterDelayCallback, maximumTimeout);
 }
 
-function onScrollWindow(event) {
+function onScrollWindow(event
+/*: Event*/
+) {
   if (event.currentTarget === window && originalBodyPointerEvents == null && document.body) {
     originalBodyPointerEvents = document.body.style.pointerEvents;
     document.body.style.pointerEvents = 'none';
@@ -59,7 +60,11 @@ function onScrollWindow(event) {
   });
 }
 
-function registerScrollListener(component, element) {
+function registerScrollListener(component
+/*: WindowScroller*/
+, element
+/*: Element*/
+) {
   if (!mountedInstances.some(function (instance) {
     return instance.props.scrollElement === element;
   })) {
@@ -69,7 +74,11 @@ function registerScrollListener(component, element) {
   mountedInstances.push(component);
 }
 
-function unregisterScrollListener(component, element) {
+function unregisterScrollListener(component
+/*: WindowScroller*/
+, element
+/*: Element*/
+) {
   mountedInstances = mountedInstances.filter(function (instance) {
     return instance !== component;
   });

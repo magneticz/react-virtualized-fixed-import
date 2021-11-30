@@ -6,17 +6,20 @@ import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized";
 import _inherits from "@babel/runtime/helpers/inherits";
 import _defineProperty from "@babel/runtime/helpers/defineProperty";
-
-var _class, _temp;
-
 import { List as ImmutableList } from 'immutable';
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import { ContentBox, ContentBoxHeader, ContentBoxParagraph } from '../demo/ContentBox';
 import AutoSizer from './AutoSizer';
 import List from '../List';
+/*:: import { type RowRendererParams } from '../List';*/
+
 import styles from './AutoSizer.example.css';
-var AutoSizerExample = (_temp = _class =
+/*:: type State = {
+  hideDescription: boolean,
+};*/
+
+var AutoSizerExample =
 /*#__PURE__*/
 function (_React$PureComponent) {
   _inherits(AutoSizerExample, _React$PureComponent);
@@ -102,11 +105,10 @@ function (_React$PureComponent) {
   }]);
 
   return AutoSizerExample;
-}(React.PureComponent), _defineProperty(_class, "propTypes", process.env.NODE_ENV === 'production' ? null : {}), _temp);
+}(React.PureComponent);
 
 _defineProperty(AutoSizerExample, "contextTypes", {
   list: PropTypes.instanceOf(ImmutableList).isRequired
 });
 
 export { AutoSizerExample as default };
-import { bpfrpt_proptype_RowRendererParams } from "../List";

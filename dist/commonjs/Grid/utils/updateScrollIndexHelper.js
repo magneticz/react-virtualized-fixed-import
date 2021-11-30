@@ -9,8 +9,7 @@ exports["default"] = updateScrollIndexHelper;
 
 var _ScalingCellSizeAndPositionManager = _interopRequireDefault(require("./ScalingCellSizeAndPositionManager.js"));
 
-var _types = require("../types");
-
+/*:: import type {Alignment, CellSize} from '../types';*/
 function updateScrollIndexHelper(_ref) {
   var cellSize = _ref.cellSize,
       cellSizeAndPositionManager = _ref.cellSizeAndPositionManager,

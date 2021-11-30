@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = defaultCellDataGetter;
 
-var _types = require("./types");
+/*:: import type {CellDataGetterParams} from './types';*/
 
 /**
  * Default accessor for returning a cell value for a given attribute.

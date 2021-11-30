@@ -1,5 +1,6 @@
 import * as React from 'react';
 import SortIndicator from './SortIndicator';
+/*:: import type {HeaderRendererParams} from './types';*/
 
 /**
  * Default table header renderer.
@@ -25,6 +26,3 @@ export default function defaultHeaderRenderer(_ref) {
 
   return children;
 }
-defaultHeaderRenderer.propTypes = process.env.NODE_ENV === 'production' ? null : bpfrpt_proptype_HeaderRendererParams === PropTypes.any ? {} : bpfrpt_proptype_HeaderRendererParams;
-import { bpfrpt_proptype_HeaderRendererParams } from "./types";
-import PropTypes from "prop-types";

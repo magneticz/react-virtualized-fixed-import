@@ -2,6 +2,37 @@ import _classCallCheck from "@babel/runtime/helpers/classCallCheck";
 import _createClass from "@babel/runtime/helpers/createClass";
 import _defineProperty from "@babel/runtime/helpers/defineProperty";
 
+/*:: import type {Alignment, CellSizeGetter, VisibleCellRange} from '../types';*/
+
+/*:: type CellSizeAndPositionManagerParams = {
+  cellCount: number,
+  cellSizeGetter: CellSizeGetter,
+  estimatedCellSize: number,
+};*/
+
+/*:: type ConfigureParams = {
+  cellCount: number,
+  estimatedCellSize: number,
+  cellSizeGetter: CellSizeGetter,
+};*/
+
+/*:: type GetUpdatedOffsetForIndex = {
+  align: Alignment,
+  containerSize: number,
+  currentOffset: number,
+  targetIndex: number,
+};*/
+
+/*:: type GetVisibleCellRangeParams = {
+  containerSize: number,
+  offset: number,
+};*/
+
+/*:: type SizeAndPositionData = {
+  offset: number,
+  size: number,
+};*/
+
 /**
  * Just-in-time calculates and caches size and position information for a collection of cells.
  */
@@ -53,17 +84,23 @@ function () {
     }
   }, {
     key: "getCellCount",
-    value: function getCellCount() {
+    value: function getCellCount()
+    /*: number*/
+    {
       return this._cellCount;
     }
   }, {
     key: "getEstimatedCellSize",
-    value: function getEstimatedCellSize() {
+    value: function getEstimatedCellSize()
+    /*: number*/
+    {
       return this._estimatedCellSize;
     }
   }, {
     key: "getLastMeasuredIndex",
-    value: function getLastMeasuredIndex() {
+    value: function getLastMeasuredIndex()
+    /*: number*/
+    {
       return this._lastMeasuredIndex;
     }
   }, {
@@ -78,7 +115,11 @@ function () {
 
   }, {
     key: "getSizeAndPositionOfCell",
-    value: function getSizeAndPositionOfCell(index) {
+    value: function getSizeAndPositionOfCell(index
+    /*: number*/
+    )
+    /*: SizeAndPositionData*/
+    {
       if (index < 0 || index >= this._cellCount) {
         throw Error("Requested index ".concat(index, " is outside of range 0..").concat(this._cellCount));
       }
@@ -117,7 +158,9 @@ function () {
     }
   }, {
     key: "getSizeAndPositionOfLastMeasuredCell",
-    value: function getSizeAndPositionOfLastMeasuredCell() {
+    value: function getSizeAndPositionOfLastMeasuredCell()
+    /*: SizeAndPositionData*/
+    {
       return this._lastMeasuredIndex >= 0 ? this._cellSizeAndPositionData[this._lastMeasuredIndex] : {
         offset: 0,
         size: 0
@@ -131,7 +174,9 @@ function () {
 
   }, {
     key: "getTotalSize",
-    value: function getTotalSize() {
+    value: function getTotalSize()
+    /*: number*/
+    {
       var lastMeasuredCellSizeAndPosition = this.getSizeAndPositionOfLastMeasuredCell();
       var totalSizeOfMeasuredCells = lastMeasuredCellSizeAndPosition.offset + lastMeasuredCellSizeAndPosition.size;
       var numUnmeasuredCells = this._cellCount - this._lastMeasuredIndex - 1;
@@ -152,7 +197,9 @@ function () {
 
   }, {
     key: "getUpdatedOffsetForIndex",
-    value: function getUpdatedOffsetForIndex(_ref3) {
+    value: function getUpdatedOffsetForIndex(_ref3)
+    /*: number*/
+    {
       var _ref3$align = _ref3.align,
           align = _ref3$align === void 0 ? 'auto' : _ref3$align,
           containerSize = _ref3.containerSize,
@@ -191,7 +238,11 @@ function () {
     }
   }, {
     key: "getVisibleCellRange",
-    value: function getVisibleCellRange(params) {
+    value: function getVisibleCellRange(params
+    /*: GetVisibleCellRangeParams*/
+    )
+    /*: VisibleCellRange*/
+    {
       var containerSize = params.containerSize,
           offset = params.offset;
       var totalSize = this.getTotalSize();
@@ -226,12 +277,24 @@ function () {
 
   }, {
     key: "resetCell",
-    value: function resetCell(index) {
+    value: function resetCell(index
+    /*: number*/
+    )
+    /*: void*/
+    {
       this._lastMeasuredIndex = Math.min(this._lastMeasuredIndex, index - 1);
     }
   }, {
     key: "_binarySearch",
-    value: function _binarySearch(high, low, offset) {
+    value: function _binarySearch(high
+    /*: number*/
+    , low
+    /*: number*/
+    , offset
+    /*: number*/
+    )
+    /*: number*/
+    {
       while (low <= high) {
         var middle = low + Math.floor((high - low) / 2);
         var currentOffset = this.getSizeAndPositionOfCell(middle).offset;
@@ -253,7 +316,13 @@ function () {
     }
   }, {
     key: "_exponentialSearch",
-    value: function _exponentialSearch(index, offset) {
+    value: function _exponentialSearch(index
+    /*: number*/
+    , offset
+    /*: number*/
+    )
+    /*: number*/
+    {
       var interval = 1;
 
       while (index < this._cellCount && this.getSizeAndPositionOfCell(index).offset < offset) {
@@ -272,7 +341,11 @@ function () {
 
   }, {
     key: "_findNearestCell",
-    value: function _findNearestCell(offset) {
+    value: function _findNearestCell(offset
+    /*: number*/
+    )
+    /*: number*/
+    {
       if (isNaN(offset)) {
         throw Error("Invalid offset ".concat(offset, " specified"));
       } // Our search algorithms find the nearest match at or below the specified offset.
@@ -299,6 +372,3 @@ function () {
 }();
 
 export { CellSizeAndPositionManager as default };
-import { bpfrpt_proptype_Alignment } from "../types";
-import { bpfrpt_proptype_CellSizeGetter } from "../types";
-import { bpfrpt_proptype_VisibleCellRange } from "../types";

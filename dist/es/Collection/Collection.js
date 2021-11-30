@@ -11,6 +11,7 @@ import * as React from 'react';
 import CollectionView from './CollectionView';
 import _calculateSizeAndPositionData from './utils/calculateSizeAndPositionData';
 import getUpdatedOffsetForIndex from '../utils/getUpdatedOffsetForIndex';
+/*:: import type {ScrollPosition, SizeInfo} from './types';*/
 
 /**
  * Renders scattered or non-linear data.
@@ -101,7 +102,9 @@ function (_React$PureComponent) {
 
   }, {
     key: "getScrollPositionForCell",
-    value: function getScrollPositionForCell(_ref) {
+    value: function getScrollPositionForCell(_ref)
+    /*: ScrollPosition*/
+    {
       var align = _ref.align,
           cellIndex = _ref.cellIndex,
           height = _ref.height,
@@ -137,7 +140,9 @@ function (_React$PureComponent) {
     }
   }, {
     key: "getTotalSize",
-    value: function getTotalSize() {
+    value: function getTotalSize()
+    /*: SizeInfo*/
+    {
       return {
         height: this._height,
         width: this._width
@@ -274,6 +279,3 @@ function defaultCellGroupRenderer(_ref4) {
     return !!renderedCell;
   });
 }
-
-import { bpfrpt_proptype_ScrollPosition } from "./types";
-import { bpfrpt_proptype_SizeInfo } from "./types";

@@ -1,8 +1,8 @@
 "use strict";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
 var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -43,9 +43,7 @@ var _AutoSizer = _interopRequireDefault(require("../AutoSizer"));
 
 var _WindowScrollerExample = _interopRequireDefault(require("./WindowScroller.example.css"));
 
-var _class, _temp;
-
-var WindowScrollerExample = (_temp = _class =
+var WindowScrollerExample =
 /*#__PURE__*/
 function (_React$PureComponent) {
   (0, _inherits2["default"])(WindowScrollerExample, _React$PureComponent);
@@ -189,7 +187,8 @@ function (_React$PureComponent) {
     }
   }]);
   return WindowScrollerExample;
-}(React.PureComponent), (0, _defineProperty2["default"])(_class, "propTypes", process.env.NODE_ENV === 'production' ? null : {}), _temp);
+}(React.PureComponent);
+
 exports["default"] = WindowScrollerExample;
 (0, _defineProperty2["default"])(WindowScrollerExample, "contextTypes", {
   customElement: _propTypes["default"].any,

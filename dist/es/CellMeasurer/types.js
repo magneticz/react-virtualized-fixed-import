@@ -1,10 +1,13 @@
-var bpfrpt_proptype_CellMeasureCache = process.env.NODE_ENV === 'production' ? null : {
-  "hasFixedWidth": PropTypes.func.isRequired,
-  "hasFixedHeight": PropTypes.func.isRequired,
-  "has": PropTypes.func.isRequired,
-  "set": PropTypes.func.isRequired,
-  "getHeight": PropTypes.func.isRequired,
-  "getWidth": PropTypes.func.isRequired
-};
-import PropTypes from "prop-types";
-export { bpfrpt_proptype_CellMeasureCache };
+/*:: export interface CellMeasureCache {
+  hasFixedWidth(): boolean;
+  hasFixedHeight(): boolean;
+  has(rowIndex: number, columnIndex: number): boolean;
+  set(
+    rowIndex: number,
+    columnIndex: number,
+    width: number,
+    height: number,
+  ): void;
+  getHeight(rowIndex: number, columnIndex?: number): number;
+  getWidth(rowIndex: number, columnIndex?: number): number;
+}*/

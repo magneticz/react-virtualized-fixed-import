@@ -1,8 +1,47 @@
+/*:: import type {Alignment, CellSize} from '../types';*/
 import ScalingCellSizeAndPositionManager from './ScalingCellSizeAndPositionManager.js';
 /**
  * Helper function that determines when to update scroll offsets to ensure that a scroll-to-index remains visible.
  * This function also ensures that the scroll ofset isn't past the last column/row of cells.
  */
+
+/*:: type Params = {
+  // Width or height of cells for the current axis
+  cellSize?: CellSize,
+
+  // Manages size and position metadata of cells
+  cellSizeAndPositionManager: ScalingCellSizeAndPositionManager,
+
+  // Previous number of rows or columns
+  previousCellsCount: number,
+
+  // Previous width or height of cells
+  previousCellSize: CellSize,
+
+  previousScrollToAlignment: Alignment,
+
+  // Previous scroll-to-index
+  previousScrollToIndex: number,
+
+  // Previous width or height of the virtualized container
+  previousSize: number,
+
+  // Current scrollLeft or scrollTop
+  scrollOffset: number,
+
+  scrollToAlignment: Alignment,
+
+  // Scroll-to-index
+  scrollToIndex: number,
+
+  // Width or height of the virtualized container
+  size: number,
+
+  sizeJustIncreasedFromZero: boolean,
+
+  // Callback to invoke with an scroll-to-index value
+  updateScrollIndexCallback: (index: number) => void,
+};*/
 
 export default function updateScrollIndexHelper(_ref) {
   var cellSize = _ref.cellSize,
@@ -36,5 +75,3 @@ export default function updateScrollIndexHelper(_ref) {
     }
   }
 }
-import { bpfrpt_proptype_Alignment } from "../types";
-import { bpfrpt_proptype_CellSize } from "../types";

@@ -1,8 +1,8 @@
 "use strict";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
 var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -35,13 +35,11 @@ var _ContentBox = require("../demo/ContentBox");
 
 var _AutoSizer = _interopRequireDefault(require("./AutoSizer"));
 
-var _List = _interopRequireWildcard(require("../List"));
+var _List = _interopRequireDefault(require("../List"));
 
 var _AutoSizerExample = _interopRequireDefault(require("./AutoSizer.example.css"));
 
-var _class, _temp;
-
-var AutoSizerExample = (_temp = _class =
+var AutoSizerExample =
 /*#__PURE__*/
 function (_React$PureComponent) {
   (0, _inherits2["default"])(AutoSizerExample, _React$PureComponent);
@@ -123,7 +121,8 @@ function (_React$PureComponent) {
     }
   }]);
   return AutoSizerExample;
-}(React.PureComponent), (0, _defineProperty2["default"])(_class, "propTypes", process.env.NODE_ENV === 'production' ? null : {}), _temp);
+}(React.PureComponent);
+
 exports["default"] = AutoSizerExample;
 (0, _defineProperty2["default"])(AutoSizerExample, "contextTypes", {
   list: _propTypes["default"].instanceOf(_immutable.List).isRequired

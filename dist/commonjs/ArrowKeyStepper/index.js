@@ -17,13 +17,5 @@ Object.defineProperty(exports, "ArrowKeyStepper", {
     return _ArrowKeyStepper["default"];
   }
 });
-Object.defineProperty(exports, "bpfrpt_proptype_ScrollIndices", {
-  enumerable: true,
-  get: function get() {
-    return _types.bpfrpt_proptype_ScrollIndices;
-  }
-});
 
 var _ArrowKeyStepper = _interopRequireDefault(require("./ArrowKeyStepper"));
-
-var _types = require("./types");

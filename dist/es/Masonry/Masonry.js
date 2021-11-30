@@ -6,8 +6,6 @@ import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized
 import _inherits from "@babel/runtime/helpers/inherits";
 import _defineProperty from "@babel/runtime/helpers/defineProperty";
 
-var _class, _temp;
-
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -17,9 +15,38 @@ import * as React from 'react';
 import { polyfill } from 'react-lifecycles-compat';
 import PositionCache from './PositionCache';
 import { requestAnimationTimeout, cancelAnimationTimeout } from '../utils/requestAnimationTimeout';
+/*:: import type {AnimationTimeoutId} from '../utils/requestAnimationTimeout';*/
+
+/*:: type Props = {
+  autoHeight: boolean,
+  cellCount: number,
+  cellMeasurerCache: CellMeasurerCache,
+  cellPositioner: Positioner,
+  cellRenderer: CellRenderer,
+  className: ?string,
+  height: number,
+  id: ?string,
+  keyMapper: KeyMapper,
+  onCellsRendered: ?OnCellsRenderedCallback,
+  onScroll: ?OnScrollCallback,
+  overscanByPixels: number,
+  role: string,
+  scrollingResetTimeInterval: number,
+  style: mixed,
+  tabIndex: number,
+  width: number,
+  rowDirection: string,
+  scrollTop?: number,
+};*/
+
+/*:: type State = {
+  isScrolling: boolean,
+  scrollTop: number,
+};*/
+
 var emptyObject = {};
 /**
- * Specifies the number of miliseconds during which to disable pointer events while a scroll is in progress.
+ * Specifies the number of milliseconds during which to disable pointer events while a scroll is in progress.
  * This improves performance and makes scrolling smoother.
  */
 
@@ -53,7 +80,7 @@ export var DEFAULT_SCROLLING_RESET_TIME_INTERVAL = 150;
  *   (Items may not span multiple columns.)
  */
 
-var Masonry = (_temp = _class =
+var Masonry =
 /*#__PURE__*/
 function (_React$PureComponent) {
   _inherits(Masonry, _React$PureComponent);
@@ -175,7 +202,11 @@ function (_React$PureComponent) {
     }
   }, {
     key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps, prevState) {
+    value: function componentDidUpdate(prevProps
+    /*: Props*/
+    , prevState
+    /*: State*/
+    ) {
       this._checkInvalidateOnUpdate();
 
       this._invokeOnScrollCallback();
@@ -225,7 +256,13 @@ function (_React$PureComponent) {
       var startIndex = 0;
       var stopIndex;
 
-      this._positionCache.range(Math.max(0, scrollTop - overscanByPixels), height + overscanByPixels * 2, function (index, left, top) {
+      this._positionCache.range(Math.max(0, scrollTop - overscanByPixels), height + overscanByPixels * 2, function (index
+      /*: number*/
+      , left
+      /*: number*/
+      , top
+      /*: number*/
+      ) {
         var _style;
 
         if (typeof stopIndex === 'undefined') {
@@ -366,7 +403,11 @@ function (_React$PureComponent) {
     }
   }, {
     key: "_populatePositionCache",
-    value: function _populatePositionCache(startIndex, stopIndex) {
+    value: function _populatePositionCache(startIndex
+    /*: number*/
+    , stopIndex
+    /*: number*/
+    ) {
       var _this$props4 = this.props,
           cellMeasurerCache = _this$props4.cellMeasurerCache,
           cellPositioner = _this$props4.cellPositioner;
@@ -381,7 +422,13 @@ function (_React$PureComponent) {
     }
   }], [{
     key: "getDerivedStateFromProps",
-    value: function getDerivedStateFromProps(nextProps, prevState) {
+    value: function getDerivedStateFromProps(nextProps
+    /*: Props*/
+    , prevState
+    /*: State*/
+    )
+    /*: $Shape<State>*/
+    {
       if (nextProps.scrollTop !== undefined && prevState.scrollTop !== nextProps.scrollTop) {
         return {
           isScrolling: true,
@@ -394,43 +441,7 @@ function (_React$PureComponent) {
   }]);
 
   return Masonry;
-}(React.PureComponent), _defineProperty(_class, "propTypes", process.env.NODE_ENV === 'production' ? null : {
-  "autoHeight": PropTypes.bool.isRequired,
-  "cellCount": PropTypes.number.isRequired,
-  "cellMeasurerCache": function cellMeasurerCache() {
-    return (typeof CellMeasurerCache === "function" ? PropTypes.instanceOf(CellMeasurerCache).isRequired : PropTypes.any.isRequired).apply(this, arguments);
-  },
-  "cellPositioner": function cellPositioner() {
-    return (typeof Positioner === "function" ? PropTypes.instanceOf(Positioner).isRequired : PropTypes.any.isRequired).apply(this, arguments);
-  },
-  "cellRenderer": function cellRenderer() {
-    return (typeof CellRenderer === "function" ? PropTypes.instanceOf(CellRenderer).isRequired : PropTypes.any.isRequired).apply(this, arguments);
-  },
-  "className": PropTypes.string,
-  "height": PropTypes.number.isRequired,
-  "id": PropTypes.string,
-  "keyMapper": function keyMapper() {
-    return (typeof KeyMapper === "function" ? PropTypes.instanceOf(KeyMapper).isRequired : PropTypes.any.isRequired).apply(this, arguments);
-  },
-  "onCellsRendered": function onCellsRendered() {
-    return (typeof OnCellsRenderedCallback === "function" ? PropTypes.instanceOf(OnCellsRenderedCallback) : PropTypes.any).apply(this, arguments);
-  },
-  "onScroll": function onScroll() {
-    return (typeof OnScrollCallback === "function" ? PropTypes.instanceOf(OnScrollCallback) : PropTypes.any).apply(this, arguments);
-  },
-  "overscanByPixels": PropTypes.number.isRequired,
-  "role": PropTypes.string.isRequired,
-  "scrollingResetTimeInterval": PropTypes.number.isRequired,
-  "style": function style(props, propName, componentName) {
-    if (!Object.prototype.hasOwnProperty.call(props, propName)) {
-      throw new Error("Prop `".concat(propName, "` has type 'any' or 'mixed', but was not provided to `").concat(componentName, "`. Pass undefined or any other value."));
-    }
-  },
-  "tabIndex": PropTypes.number.isRequired,
-  "width": PropTypes.number.isRequired,
-  "rowDirection": PropTypes.string.isRequired,
-  "scrollTop": PropTypes.number
-}), _temp);
+}(React.PureComponent);
 
 _defineProperty(Masonry, "defaultProps", {
   autoHeight: false,
@@ -450,17 +461,40 @@ function identity(value) {
 }
 
 function noop() {}
+/*:: type KeyMapper = (index: number) => mixed;*/
 
-var bpfrpt_proptype_CellMeasurerCache = process.env.NODE_ENV === 'production' ? null : {
-  "defaultHeight": PropTypes.number.isRequired,
-  "defaultWidth": PropTypes.number.isRequired,
-  "getHeight": PropTypes.func.isRequired,
-  "getWidth": PropTypes.func.isRequired
-};
+/*:: export type CellMeasurerCache = {
+  defaultHeight: number,
+  defaultWidth: number,
+  getHeight: (index: number) => number,
+  getWidth: (index: number) => number,
+};*/
+
+/*:: type CellRenderer = (params: {|
+  index: number,
+  isScrolling: boolean,
+  key: mixed,
+  parent: mixed,
+  style: mixed,
+|}) => mixed;*/
+
+/*:: type OnCellsRenderedCallback = (params: {|
+  startIndex: number,
+  stopIndex: number,
+|}) => void;*/
+
+/*:: type OnScrollCallback = (params: {|
+  clientHeight: number,
+  scrollHeight: number,
+  scrollTop: number,
+|}) => void;*/
+
+/*:: type Position = {
+  left: number,
+  top: number,
+};*/
+
+
 polyfill(Masonry);
 export default Masonry;
-var bpfrpt_proptype_Positioner = process.env.NODE_ENV === 'production' ? null : PropTypes.func;
-import { bpfrpt_proptype_AnimationTimeoutId } from "../utils/requestAnimationTimeout";
-import PropTypes from "prop-types";
-export { bpfrpt_proptype_CellMeasurerCache };
-export { bpfrpt_proptype_Positioner };
+/*:: export type Positioner = (index: number) => Position;*/

@@ -32,14 +32,30 @@ function () {
 
   (0, _createClass2["default"])(PositionCache, [{
     key: "estimateTotalHeight",
-    value: function estimateTotalHeight(cellCount, columnCount, defaultCellHeight) {
+    value: function estimateTotalHeight(cellCount
+    /*: number*/
+    , columnCount
+    /*: number*/
+    , defaultCellHeight
+    /*: number*/
+    )
+    /*: number*/
+    {
       var unmeasuredCellCount = cellCount - this.count;
       return this.tallestColumnSize + Math.ceil(unmeasuredCellCount / columnCount) * defaultCellHeight;
     } // Render all cells visible within the viewport range defined.
 
   }, {
     key: "range",
-    value: function range(scrollTop, clientHeight, renderCallback) {
+    value: function range(scrollTop
+    /*: number*/
+    , clientHeight
+    /*: number*/
+    , renderCallback
+    /*: RenderCallback*/
+    )
+    /*: void*/
+    {
       var _this = this;
 
       this._intervalTree.queryInterval(scrollTop, scrollTop + clientHeight, function (_ref) {
@@ -53,7 +69,17 @@ function () {
     }
   }, {
     key: "setPosition",
-    value: function setPosition(index, left, top, height) {
+    value: function setPosition(index
+    /*: number*/
+    , left
+    /*: number*/
+    , top
+    /*: number*/
+    , height
+    /*: number*/
+    )
+    /*: void*/
+    {
       this._intervalTree.insert([top, top + height, index]);
 
       this._leftMap[index] = left;
@@ -68,17 +94,23 @@ function () {
     }
   }, {
     key: "count",
-    get: function get() {
+    get: function get()
+    /*: number*/
+    {
       return this._intervalTree.count;
     }
   }, {
     key: "shortestColumnSize",
-    get: function get() {
+    get: function get()
+    /*: number*/
+    {
       var columnSizeMap = this._columnSizeMap;
       var size = 0;
 
       for (var i in columnSizeMap) {
-        var height = columnSizeMap[i];
+        var height = columnSizeMap[(i
+        /*: any*/
+        )];
         size = size === 0 ? height : Math.min(size, height);
       }
 
@@ -86,12 +118,16 @@ function () {
     }
   }, {
     key: "tallestColumnSize",
-    get: function get() {
+    get: function get()
+    /*: number*/
+    {
       var columnSizeMap = this._columnSizeMap;
       var size = 0;
 
       for (var i in columnSizeMap) {
-        var height = columnSizeMap[i];
+        var height = columnSizeMap[(i
+        /*: any*/
+        )];
         size = Math.max(size, height);
       }
 

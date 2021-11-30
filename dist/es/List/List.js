@@ -7,8 +7,18 @@ import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized
 import _inherits from "@babel/runtime/helpers/inherits";
 import _defineProperty from "@babel/runtime/helpers/defineProperty";
 
-var _class, _temp;
+/*:: import type {
+  NoContentRenderer,
+  Alignment,
+  CellSize,
+  CellPosition,
+  OverscanIndicesGetter,
+  RenderedSection,
+  CellRendererParams,
+  Scroll as GridScroll,
+} from '../Grid';*/
 
+/*:: import type {RowRenderer, RenderedRows, Scroll} from './types';*/
 import Grid, { accessibilityOverscanIndicesGetter } from '../Grid';
 import * as React from 'react';
 import clsx from 'clsx';
@@ -21,7 +31,78 @@ import clsx from 'clsx';
  * This component renders a virtualized list of elements with either fixed or dynamic heights.
  */
 
-var List = (_temp = _class =
+/*:: type Props = {
+  'aria-label'?: string,
+
+  /**
+   * Removes fixed height from the scrollingContainer so that the total height
+   * of rows can stretch the window. Intended for use with WindowScroller
+   *-/
+  autoHeight: boolean,
+
+  /** Optional CSS class name *-/
+  className?: string,
+
+  /**
+   * Used to estimate the total height of a List before all of its rows have actually been measured.
+   * The estimated total height is adjusted as rows are rendered.
+   *-/
+  estimatedRowSize: number,
+
+  /** Height constraint for list (determines how many actual rows are rendered) *-/
+  height: number,
+
+  /** Optional renderer to be used in place of rows when rowCount is 0 *-/
+  noRowsRenderer: NoContentRenderer,
+
+  /** Callback invoked with information about the slice of rows that were just rendered.  *-/
+
+  onRowsRendered: (params: RenderedRows) => void,
+
+  /**
+   * Callback invoked whenever the scroll offset changes within the inner scrollable region.
+   * This callback can be used to sync scrolling between lists, tables, or grids.
+   *-/
+  onScroll: (params: Scroll) => void,
+
+  /** See Grid#overscanIndicesGetter *-/
+  overscanIndicesGetter: OverscanIndicesGetter,
+
+  /**
+   * Number of rows to render above/below the visible bounds of the list.
+   * These rows can help for smoother scrolling on touch devices.
+   *-/
+  overscanRowCount: number,
+
+  /** Either a fixed row height (number) or a function that returns the height of a row given its index.  *-/
+  rowHeight: CellSize,
+
+  /** Responsible for rendering a row given an index; ({ index: number }): node *-/
+  rowRenderer: RowRenderer,
+
+  /** Number of rows in list. *-/
+  rowCount: number,
+
+  /** See Grid#scrollToAlignment *-/
+  scrollToAlignment: Alignment,
+
+  /** Row index to ensure visible (by forcefully scrolling if necessary) *-/
+  scrollToIndex: number,
+
+  /** Vertical offset. *-/
+  scrollTop?: number,
+
+  /** Optional inline style *-/
+  style: Object,
+
+  /** Tab index for focus *-/
+  tabIndex?: number,
+
+  /** Width of list *-/
+  width: number,
+};*/
+
+var List =
 /*#__PURE__*/
 function (_React$PureComponent) {
   _inherits(List, _React$PureComponent);
@@ -72,7 +153,9 @@ function (_React$PureComponent) {
       });
     });
 
-    _defineProperty(_assertThisInitialized(_this), "_setRef", function (ref) {
+    _defineProperty(_assertThisInitialized(_this), "_setRef", function (ref
+    /*: ?React.ElementRef<typeof Grid>*/
+    ) {
       _this.Grid = ref;
     });
 
@@ -180,7 +263,9 @@ function (_React$PureComponent) {
   }, {
     key: "recomputeRowHeights",
     value: function recomputeRowHeights() {
-      var index = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+      var index
+      /*: number*/
+      = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
       if (this.Grid) {
         this.Grid.recomputeGridSize({
@@ -194,7 +279,9 @@ function (_React$PureComponent) {
   }, {
     key: "scrollToPosition",
     value: function scrollToPosition() {
-      var scrollTop = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+      var scrollTop
+      /*: number*/
+      = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
       if (this.Grid) {
         this.Grid.scrollToPosition({
@@ -207,7 +294,9 @@ function (_React$PureComponent) {
   }, {
     key: "scrollToRow",
     value: function scrollToRow() {
-      var index = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+      var index
+      /*: number*/
+      = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
       if (this.Grid) {
         this.Grid.scrollToCell({
@@ -241,85 +330,7 @@ function (_React$PureComponent) {
   }]);
 
   return List;
-}(React.PureComponent), _defineProperty(_class, "propTypes", process.env.NODE_ENV === 'production' ? null : {
-  "aria-label": PropTypes.string,
-
-  /**
-   * Removes fixed height from the scrollingContainer so that the total height
-   * of rows can stretch the window. Intended for use with WindowScroller
-   */
-  "autoHeight": PropTypes.bool.isRequired,
-
-  /** Optional CSS class name */
-  "className": PropTypes.string,
-
-  /**
-   * Used to estimate the total height of a List before all of its rows have actually been measured.
-   * The estimated total height is adjusted as rows are rendered.
-   */
-  "estimatedRowSize": PropTypes.number.isRequired,
-
-  /** Height constraint for list (determines how many actual rows are rendered) */
-  "height": PropTypes.number.isRequired,
-
-  /** Optional renderer to be used in place of rows when rowCount is 0 */
-  "noRowsRenderer": function noRowsRenderer() {
-    return (typeof bpfrpt_proptype_NoContentRenderer === "function" ? bpfrpt_proptype_NoContentRenderer.isRequired ? bpfrpt_proptype_NoContentRenderer.isRequired : bpfrpt_proptype_NoContentRenderer : PropTypes.shape(bpfrpt_proptype_NoContentRenderer).isRequired).apply(this, arguments);
-  },
-
-  /** Callback invoked with information about the slice of rows that were just rendered.  */
-  "onRowsRendered": PropTypes.func.isRequired,
-
-  /**
-   * Callback invoked whenever the scroll offset changes within the inner scrollable region.
-   * This callback can be used to sync scrolling between lists, tables, or grids.
-   */
-  "onScroll": PropTypes.func.isRequired,
-
-  /** See Grid#overscanIndicesGetter */
-  "overscanIndicesGetter": function overscanIndicesGetter() {
-    return (typeof bpfrpt_proptype_OverscanIndicesGetter === "function" ? bpfrpt_proptype_OverscanIndicesGetter.isRequired ? bpfrpt_proptype_OverscanIndicesGetter.isRequired : bpfrpt_proptype_OverscanIndicesGetter : PropTypes.shape(bpfrpt_proptype_OverscanIndicesGetter).isRequired).apply(this, arguments);
-  },
-
-  /**
-   * Number of rows to render above/below the visible bounds of the list.
-   * These rows can help for smoother scrolling on touch devices.
-   */
-  "overscanRowCount": PropTypes.number.isRequired,
-
-  /** Either a fixed row height (number) or a function that returns the height of a row given its index.  */
-  "rowHeight": function rowHeight() {
-    return (typeof bpfrpt_proptype_CellSize === "function" ? bpfrpt_proptype_CellSize.isRequired ? bpfrpt_proptype_CellSize.isRequired : bpfrpt_proptype_CellSize : PropTypes.shape(bpfrpt_proptype_CellSize).isRequired).apply(this, arguments);
-  },
-
-  /** Responsible for rendering a row given an index; ({ index: number }): node */
-  "rowRenderer": function rowRenderer() {
-    return (typeof bpfrpt_proptype_RowRenderer === "function" ? bpfrpt_proptype_RowRenderer.isRequired ? bpfrpt_proptype_RowRenderer.isRequired : bpfrpt_proptype_RowRenderer : PropTypes.shape(bpfrpt_proptype_RowRenderer).isRequired).apply(this, arguments);
-  },
-
-  /** Number of rows in list. */
-  "rowCount": PropTypes.number.isRequired,
-
-  /** See Grid#scrollToAlignment */
-  "scrollToAlignment": function scrollToAlignment() {
-    return (typeof bpfrpt_proptype_Alignment === "function" ? bpfrpt_proptype_Alignment.isRequired ? bpfrpt_proptype_Alignment.isRequired : bpfrpt_proptype_Alignment : PropTypes.shape(bpfrpt_proptype_Alignment).isRequired).apply(this, arguments);
-  },
-
-  /** Row index to ensure visible (by forcefully scrolling if necessary) */
-  "scrollToIndex": PropTypes.number.isRequired,
-
-  /** Vertical offset. */
-  "scrollTop": PropTypes.number,
-
-  /** Optional inline style */
-  "style": PropTypes.object.isRequired,
-
-  /** Tab index for focus */
-  "tabIndex": PropTypes.number,
-
-  /** Width of list */
-  "width": PropTypes.number.isRequired
-}), _temp);
+}(React.PureComponent);
 
 _defineProperty(List, "defaultProps", {
   autoHeight: false,
@@ -337,15 +348,3 @@ _defineProperty(List, "defaultProps", {
 });
 
 export { List as default };
-import { bpfrpt_proptype_NoContentRenderer } from "../Grid";
-import { bpfrpt_proptype_Alignment } from "../Grid";
-import { bpfrpt_proptype_CellSize } from "../Grid";
-import { bpfrpt_proptype_CellPosition } from "../Grid";
-import { bpfrpt_proptype_OverscanIndicesGetter } from "../Grid";
-import { bpfrpt_proptype_RenderedSection } from "../Grid";
-import { bpfrpt_proptype_CellRendererParams } from "../Grid";
-import { bpfrpt_proptype_Scroll as bpfrpt_proptype_GridScroll } from "../Grid";
-import { bpfrpt_proptype_RowRenderer } from "./types";
-import { bpfrpt_proptype_RenderedRows } from "./types";
-import { bpfrpt_proptype_Scroll } from "./types";
-import PropTypes from "prop-types";

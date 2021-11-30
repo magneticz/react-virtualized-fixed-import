@@ -15,7 +15,9 @@ var isChrome = function isChrome() {
   return !!window.chrome;
 };
 
-var getMaxElementSize = function getMaxElementSize() {
+var getMaxElementSize = function getMaxElementSize()
+/*: number*/
+{
   if (isBrowser()) {
     if (isChrome()) {
       return CHROME_MAX_ELEMENT_SIZE;

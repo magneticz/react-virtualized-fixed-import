@@ -6,8 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports["default"] = defaultOverscanIndicesGetter;
 exports.SCROLL_DIRECTION_VERTICAL = exports.SCROLL_DIRECTION_HORIZONTAL = exports.SCROLL_DIRECTION_FORWARD = exports.SCROLL_DIRECTION_BACKWARD = void 0;
 
-var _types = require("./types");
-
+/*:: import type {OverscanIndicesGetterParams, OverscanIndices} from './types';*/
 var SCROLL_DIRECTION_BACKWARD = -1;
 exports.SCROLL_DIRECTION_BACKWARD = SCROLL_DIRECTION_BACKWARD;
 var SCROLL_DIRECTION_FORWARD = 1;
@@ -22,7 +21,9 @@ var SCROLL_DIRECTION_VERTICAL = 'vertical';
 
 exports.SCROLL_DIRECTION_VERTICAL = SCROLL_DIRECTION_VERTICAL;
 
-function defaultOverscanIndicesGetter(_ref) {
+function defaultOverscanIndicesGetter(_ref)
+/*: OverscanIndices*/
+{
   var cellCount = _ref.cellCount,
       overscanCellsCount = _ref.overscanCellsCount,
       scrollDirection = _ref.scrollDirection,

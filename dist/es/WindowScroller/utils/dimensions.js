@@ -2,7 +2,17 @@
  * Gets the dimensions of the element, accounting for API differences between
  * `window` and other DOM elements.
  */
+
+/*:: type Dimensions = {
+  height: number,
+  width: number,
+};*/
 // TODO Move this into WindowScroller and import from there
+
+/*:: type WindowScrollerProps = {
+  serverHeight: number,
+  serverWidth: number,
+};*/
 var isWindow = function isWindow(element) {
   return element === window;
 };
@@ -11,7 +21,13 @@ var getBoundingBox = function getBoundingBox(element) {
   return element.getBoundingClientRect();
 };
 
-export function getDimensions(scrollElement, props) {
+export function getDimensions(scrollElement
+/*: ?Element*/
+, props
+/*: WindowScrollerProps*/
+)
+/*: Dimensions*/
+{
   if (!scrollElement) {
     return {
       height: props.serverHeight,
@@ -36,7 +52,11 @@ export function getDimensions(scrollElement, props) {
  * In this case the body’s top or left position will be a negative number and this element’s top or left will be increased (by that amount).
  */
 
-export function getPositionOffset(element, container) {
+export function getPositionOffset(element
+/*: Element*/
+, container
+/*: Element*/
+) {
   if (isWindow(container) && document.documentElement) {
     var containerElement = document.documentElement;
     var elementRect = getBoundingBox(element);
@@ -63,7 +83,9 @@ export function getPositionOffset(element, container) {
  * and API differences between `window` and other DOM elements.
  */
 
-export function getScrollOffset(element) {
+export function getScrollOffset(element
+/*: Element*/
+) {
   if (isWindow(element) && document.documentElement) {
     return {
       top: 'scrollY' in window ? window.scrollY : document.documentElement.scrollTop,

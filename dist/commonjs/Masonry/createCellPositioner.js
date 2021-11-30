@@ -5,9 +5,23 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = createCellPositioner;
 
-var _Masonry = require("./Masonry");
+/*:: import type {CellMeasurerCache, Positioner} from './Masonry';*/
 
-function createCellPositioner(_ref) {
+/*:: type createCellPositionerParams = {
+  cellMeasurerCache: CellMeasurerCache,
+  columnCount: number,
+  columnWidth: number,
+  spacer?: number,
+};*/
+
+/*:: type resetParams = {
+  columnCount: number,
+  columnWidth: number,
+  spacer?: number,
+};*/
+function createCellPositioner(_ref)
+/*: Positioner*/
+{
   var cellMeasurerCache = _ref.cellMeasurerCache,
       columnCount = _ref.columnCount,
       columnWidth = _ref.columnWidth,
@@ -35,7 +49,9 @@ function createCellPositioner(_ref) {
     };
   }
 
-  function initOrResetDerivedValues() {
+  function initOrResetDerivedValues()
+  /*: void*/
+  {
     // Track the height of each column.
     // Layout algorithm below always inserts into the shortest column.
     columnHeights = [];
@@ -45,7 +61,11 @@ function createCellPositioner(_ref) {
     }
   }
 
-  function reset(params) {
+  function reset(params
+  /*: resetParams*/
+  )
+  /*: void*/
+  {
     columnCount = params.columnCount;
     columnWidth = params.columnWidth;
     spacer = params.spacer;

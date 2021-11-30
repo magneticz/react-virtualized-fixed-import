@@ -1,13 +1,13 @@
 "use strict";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
 var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.bpfrpt_proptype_Positioner = exports.bpfrpt_proptype_CellMeasurerCache = exports["default"] = exports.DEFAULT_SCROLLING_RESET_TIME_INTERVAL = void 0;
+exports["default"] = exports.DEFAULT_SCROLLING_RESET_TIME_INTERVAL = void 0;
 
 var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
 
@@ -33,17 +33,13 @@ var _PositionCache = _interopRequireDefault(require("./PositionCache"));
 
 var _requestAnimationTimeout = require("../utils/requestAnimationTimeout");
 
-var _propTypes = _interopRequireDefault(require("prop-types"));
-
-var _class, _temp;
-
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var emptyObject = {};
 /**
- * Specifies the number of miliseconds during which to disable pointer events while a scroll is in progress.
+ * Specifies the number of milliseconds during which to disable pointer events while a scroll is in progress.
  * This improves performance and makes scrolling smoother.
  */
 
@@ -78,7 +74,8 @@ var DEFAULT_SCROLLING_RESET_TIME_INTERVAL = 150;
  */
 
 exports.DEFAULT_SCROLLING_RESET_TIME_INTERVAL = DEFAULT_SCROLLING_RESET_TIME_INTERVAL;
-var Masonry = (_temp = _class =
+
+var Masonry =
 /*#__PURE__*/
 function (_React$PureComponent) {
   (0, _inherits2["default"])(Masonry, _React$PureComponent);
@@ -187,7 +184,11 @@ function (_React$PureComponent) {
     }
   }, {
     key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps, prevState) {
+    value: function componentDidUpdate(prevProps
+    /*: Props*/
+    , prevState
+    /*: State*/
+    ) {
       this._checkInvalidateOnUpdate();
 
       this._invokeOnScrollCallback();
@@ -237,7 +238,13 @@ function (_React$PureComponent) {
       var startIndex = 0;
       var stopIndex;
 
-      this._positionCache.range(Math.max(0, scrollTop - overscanByPixels), height + overscanByPixels * 2, function (index, left, top) {
+      this._positionCache.range(Math.max(0, scrollTop - overscanByPixels), height + overscanByPixels * 2, function (index
+      /*: number*/
+      , left
+      /*: number*/
+      , top
+      /*: number*/
+      ) {
         var _style;
 
         if (typeof stopIndex === 'undefined') {
@@ -378,7 +385,11 @@ function (_React$PureComponent) {
     }
   }, {
     key: "_populatePositionCache",
-    value: function _populatePositionCache(startIndex, stopIndex) {
+    value: function _populatePositionCache(startIndex
+    /*: number*/
+    , stopIndex
+    /*: number*/
+    ) {
       var _this$props4 = this.props,
           cellMeasurerCache = _this$props4.cellMeasurerCache,
           cellPositioner = _this$props4.cellPositioner;
@@ -393,7 +404,13 @@ function (_React$PureComponent) {
     }
   }], [{
     key: "getDerivedStateFromProps",
-    value: function getDerivedStateFromProps(nextProps, prevState) {
+    value: function getDerivedStateFromProps(nextProps
+    /*: Props*/
+    , prevState
+    /*: State*/
+    )
+    /*: $Shape<State>*/
+    {
       if (nextProps.scrollTop !== undefined && prevState.scrollTop !== nextProps.scrollTop) {
         return {
           isScrolling: true,
@@ -405,43 +422,8 @@ function (_React$PureComponent) {
     }
   }]);
   return Masonry;
-}(React.PureComponent), (0, _defineProperty2["default"])(_class, "propTypes", process.env.NODE_ENV === 'production' ? null : {
-  "autoHeight": _propTypes["default"].bool.isRequired,
-  "cellCount": _propTypes["default"].number.isRequired,
-  "cellMeasurerCache": function cellMeasurerCache() {
-    return (typeof CellMeasurerCache === "function" ? _propTypes["default"].instanceOf(CellMeasurerCache).isRequired : _propTypes["default"].any.isRequired).apply(this, arguments);
-  },
-  "cellPositioner": function cellPositioner() {
-    return (typeof Positioner === "function" ? _propTypes["default"].instanceOf(Positioner).isRequired : _propTypes["default"].any.isRequired).apply(this, arguments);
-  },
-  "cellRenderer": function cellRenderer() {
-    return (typeof CellRenderer === "function" ? _propTypes["default"].instanceOf(CellRenderer).isRequired : _propTypes["default"].any.isRequired).apply(this, arguments);
-  },
-  "className": _propTypes["default"].string,
-  "height": _propTypes["default"].number.isRequired,
-  "id": _propTypes["default"].string,
-  "keyMapper": function keyMapper() {
-    return (typeof KeyMapper === "function" ? _propTypes["default"].instanceOf(KeyMapper).isRequired : _propTypes["default"].any.isRequired).apply(this, arguments);
-  },
-  "onCellsRendered": function onCellsRendered() {
-    return (typeof OnCellsRenderedCallback === "function" ? _propTypes["default"].instanceOf(OnCellsRenderedCallback) : _propTypes["default"].any).apply(this, arguments);
-  },
-  "onScroll": function onScroll() {
-    return (typeof OnScrollCallback === "function" ? _propTypes["default"].instanceOf(OnScrollCallback) : _propTypes["default"].any).apply(this, arguments);
-  },
-  "overscanByPixels": _propTypes["default"].number.isRequired,
-  "role": _propTypes["default"].string.isRequired,
-  "scrollingResetTimeInterval": _propTypes["default"].number.isRequired,
-  "style": function style(props, propName, componentName) {
-    if (!Object.prototype.hasOwnProperty.call(props, propName)) {
-      throw new Error("Prop `".concat(propName, "` has type 'any' or 'mixed', but was not provided to `").concat(componentName, "`. Pass undefined or any other value."));
-    }
-  },
-  "tabIndex": _propTypes["default"].number.isRequired,
-  "width": _propTypes["default"].number.isRequired,
-  "rowDirection": _propTypes["default"].string.isRequired,
-  "scrollTop": _propTypes["default"].number
-}), _temp);
+}(React.PureComponent);
+
 (0, _defineProperty2["default"])(Masonry, "defaultProps", {
   autoHeight: false,
   keyMapper: identity,
@@ -460,16 +442,42 @@ function identity(value) {
 }
 
 function noop() {}
+/*:: type KeyMapper = (index: number) => mixed;*/
 
-var bpfrpt_proptype_CellMeasurerCache = process.env.NODE_ENV === 'production' ? null : {
-  "defaultHeight": _propTypes["default"].number.isRequired,
-  "defaultWidth": _propTypes["default"].number.isRequired,
-  "getHeight": _propTypes["default"].func.isRequired,
-  "getWidth": _propTypes["default"].func.isRequired
-};
-exports.bpfrpt_proptype_CellMeasurerCache = bpfrpt_proptype_CellMeasurerCache;
+/*:: export type CellMeasurerCache = {
+  defaultHeight: number,
+  defaultWidth: number,
+  getHeight: (index: number) => number,
+  getWidth: (index: number) => number,
+};*/
+
+/*:: type CellRenderer = (params: {|
+  index: number,
+  isScrolling: boolean,
+  key: mixed,
+  parent: mixed,
+  style: mixed,
+|}) => mixed;*/
+
+/*:: type OnCellsRenderedCallback = (params: {|
+  startIndex: number,
+  stopIndex: number,
+|}) => void;*/
+
+/*:: type OnScrollCallback = (params: {|
+  clientHeight: number,
+  scrollHeight: number,
+  scrollTop: number,
+|}) => void;*/
+
+/*:: type Position = {
+  left: number,
+  top: number,
+};*/
+
+
 (0, _reactLifecyclesCompat.polyfill)(Masonry);
 var _default = Masonry;
+/*:: export type Positioner = (index: number) => Position;*/
+
 exports["default"] = _default;
-var bpfrpt_proptype_Positioner = process.env.NODE_ENV === 'production' ? null : _propTypes["default"].func;
-exports.bpfrpt_proptype_Positioner = bpfrpt_proptype_Positioner;

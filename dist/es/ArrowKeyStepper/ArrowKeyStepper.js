@@ -6,19 +6,46 @@ import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized
 import _inherits from "@babel/runtime/helpers/inherits";
 import _defineProperty from "@babel/runtime/helpers/defineProperty";
 
-var _class, _temp;
-
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
+/*:: import type {RenderedSection} from '../Grid';*/
+
+/*:: import type {ScrollIndices} from './types';*/
 import * as React from 'react';
 import { polyfill } from 'react-lifecycles-compat';
 /**
  * This HOC decorates a virtualized component and responds to arrow-key events by scrolling one row or column at a time.
  */
 
-var ArrowKeyStepper = (_temp = _class =
+/*:: type ChildrenParams = {
+  onSectionRendered: (params: RenderedSection) => void,
+  scrollToColumn: number,
+  scrollToRow: number,
+};*/
+
+/*:: type Props = {
+  children: (params: ChildrenParams) => React.Element<*>,
+  className?: string,
+  columnCount: number,
+  disabled: boolean,
+  isControlled: boolean,
+  mode: 'cells' | 'edges',
+  onScrollToChange?: (params: ScrollIndices) => void,
+  rowCount: number,
+  scrollToColumn: number,
+  scrollToRow: number,
+};*/
+
+/*:: type State = ScrollIndices & {
+  instanceProps: {
+    prevScrollToColumn: number,
+    prevScrollToRow: number,
+  },
+};*/
+
+var ArrowKeyStepper =
 /*#__PURE__*/
 function (_React$PureComponent) {
   _inherits(ArrowKeyStepper, _React$PureComponent);
@@ -53,7 +80,9 @@ function (_React$PureComponent) {
 
     _defineProperty(_assertThisInitialized(_this), "_rowStopIndex", 0);
 
-    _defineProperty(_assertThisInitialized(_this), "_onKeyDown", function (event) {
+    _defineProperty(_assertThisInitialized(_this), "_onKeyDown", function (event
+    /*: KeyboardEvent*/
+    ) {
       var _this$props = _this.props,
           columnCount = _this$props.columnCount,
           disabled = _this$props.disabled,
@@ -176,7 +205,13 @@ function (_React$PureComponent) {
     }
   }], [{
     key: "getDerivedStateFromProps",
-    value: function getDerivedStateFromProps(nextProps, prevState) {
+    value: function getDerivedStateFromProps(nextProps
+    /*: Props*/
+    , prevState
+    /*: State*/
+    )
+    /*: $Shape<State>*/
+    {
       if (nextProps.isControlled) {
         return {};
       }
@@ -197,18 +232,7 @@ function (_React$PureComponent) {
   }]);
 
   return ArrowKeyStepper;
-}(React.PureComponent), _defineProperty(_class, "propTypes", process.env.NODE_ENV === 'production' ? null : {
-  "children": PropTypes.func.isRequired,
-  "className": PropTypes.string,
-  "columnCount": PropTypes.number.isRequired,
-  "disabled": PropTypes.bool.isRequired,
-  "isControlled": PropTypes.bool.isRequired,
-  "mode": PropTypes.oneOf(["cells", "edges"]).isRequired,
-  "onScrollToChange": PropTypes.func,
-  "rowCount": PropTypes.number.isRequired,
-  "scrollToColumn": PropTypes.number.isRequired,
-  "scrollToRow": PropTypes.number.isRequired
-}), _temp);
+}(React.PureComponent);
 
 _defineProperty(ArrowKeyStepper, "defaultProps", {
   disabled: false,
@@ -220,6 +244,3 @@ _defineProperty(ArrowKeyStepper, "defaultProps", {
 
 polyfill(ArrowKeyStepper);
 export default ArrowKeyStepper;
-import { bpfrpt_proptype_RenderedSection } from "../Grid";
-import { bpfrpt_proptype_ScrollIndices } from "./types";
-import PropTypes from "prop-types";

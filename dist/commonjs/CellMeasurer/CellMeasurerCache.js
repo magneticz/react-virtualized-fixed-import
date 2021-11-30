@@ -13,12 +13,31 @@ var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/creat
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
-var _types = require("./types");
-
+/*:: import type {CellMeasureCache} from './types';*/
 var DEFAULT_HEIGHT = 30;
 exports.DEFAULT_HEIGHT = DEFAULT_HEIGHT;
 var DEFAULT_WIDTH = 100; // Enables more intelligent mapping of a given column and row index to an item ID.
 // This prevents a cell cache from being invalidated when its parent collection is modified.
+
+/*:: type KeyMapper = (rowIndex: number, columnIndex: number) => any;*/
+
+/*:: type CellMeasurerCacheParams = {
+  defaultHeight?: number,
+  defaultWidth?: number,
+  fixedHeight?: boolean,
+  fixedWidth?: boolean,
+  minHeight?: number,
+  minWidth?: number,
+  keyMapper?: KeyMapper,
+};*/
+
+/*:: type Cache = {
+  [key: any]: number,
+};*/
+
+/*:: type IndexParam = {
+  index: number,
+};*/
 
 exports.DEFAULT_WIDTH = DEFAULT_WIDTH;
 
@@ -31,7 +50,9 @@ function () {
   function CellMeasurerCache() {
     var _this = this;
 
-    var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var params
+    /*: CellMeasurerCacheParams*/
+    = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
     (0, _classCallCheck2["default"])(this, CellMeasurerCache);
     (0, _defineProperty2["default"])(this, "_cellHeightCache", {});
     (0, _defineProperty2["default"])(this, "_cellWidthCache", {});
@@ -92,8 +113,12 @@ function () {
 
   (0, _createClass2["default"])(CellMeasurerCache, [{
     key: "clear",
-    value: function clear(rowIndex) {
-      var columnIndex = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+    value: function clear(rowIndex
+    /*: number*/
+    ) {
+      var columnIndex
+      /*: number*/
+      = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
 
       var key = this._keyMapper(rowIndex, columnIndex);
 
@@ -114,18 +139,28 @@ function () {
     }
   }, {
     key: "hasFixedHeight",
-    value: function hasFixedHeight() {
+    value: function hasFixedHeight()
+    /*: boolean*/
+    {
       return this._hasFixedHeight;
     }
   }, {
     key: "hasFixedWidth",
-    value: function hasFixedWidth() {
+    value: function hasFixedWidth()
+    /*: boolean*/
+    {
       return this._hasFixedWidth;
     }
   }, {
     key: "getHeight",
-    value: function getHeight(rowIndex) {
-      var columnIndex = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+    value: function getHeight(rowIndex
+    /*: number*/
+    )
+    /*: number*/
+    {
+      var columnIndex
+      /*: number*/
+      = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
 
       if (this._hasFixedHeight) {
         return this._defaultHeight;
@@ -137,8 +172,14 @@ function () {
     }
   }, {
     key: "getWidth",
-    value: function getWidth(rowIndex) {
-      var columnIndex = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+    value: function getWidth(rowIndex
+    /*: number*/
+    )
+    /*: number*/
+    {
+      var columnIndex
+      /*: number*/
+      = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
 
       if (this._hasFixedWidth) {
         return this._defaultWidth;
@@ -150,8 +191,14 @@ function () {
     }
   }, {
     key: "has",
-    value: function has(rowIndex) {
-      var columnIndex = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+    value: function has(rowIndex
+    /*: number*/
+    )
+    /*: boolean*/
+    {
+      var columnIndex
+      /*: number*/
+      = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
 
       var key = this._keyMapper(rowIndex, columnIndex);
 
@@ -159,7 +206,17 @@ function () {
     }
   }, {
     key: "set",
-    value: function set(rowIndex, columnIndex, width, height) {
+    value: function set(rowIndex
+    /*: number*/
+    , columnIndex
+    /*: number*/
+    , width
+    /*: number*/
+    , height
+    /*: number*/
+    )
+    /*: void*/
+    {
       var key = this._keyMapper(rowIndex, columnIndex);
 
       if (columnIndex >= this._columnCount) {
@@ -178,7 +235,11 @@ function () {
     }
   }, {
     key: "_updateCachedColumnAndRowSizes",
-    value: function _updateCachedColumnAndRowSizes(rowIndex, columnIndex) {
+    value: function _updateCachedColumnAndRowSizes(rowIndex
+    /*: number*/
+    , columnIndex
+    /*: number*/
+    ) {
       // :columnWidth and :rowHeight are derived based on all cells in a column/row.
       // Pre-cache these derived values for faster lookup later.
       // Reads are expected to occur more frequently than writes in this case.
@@ -209,12 +270,16 @@ function () {
     }
   }, {
     key: "defaultHeight",
-    get: function get() {
+    get: function get()
+    /*: number*/
+    {
       return this._defaultHeight;
     }
   }, {
     key: "defaultWidth",
-    get: function get() {
+    get: function get()
+    /*: number*/
+    {
       return this._defaultWidth;
     }
   }]);
@@ -223,6 +288,10 @@ function () {
 
 exports["default"] = CellMeasurerCache;
 
-function defaultKeyMapper(rowIndex, columnIndex) {
+function defaultKeyMapper(rowIndex
+/*: number*/
+, columnIndex
+/*: number*/
+) {
   return "".concat(rowIndex, "-").concat(columnIndex);
 }

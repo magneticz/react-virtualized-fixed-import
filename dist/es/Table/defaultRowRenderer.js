@@ -1,5 +1,6 @@
 import _extends from "@babel/runtime/helpers/extends";
 import * as React from 'react';
+/*:: import type {RowRendererParams} from './types';*/
 
 /**
  * Default row renderer for Table.
@@ -82,6 +83,3 @@ export default function defaultRowRenderer(_ref) {
     style: style
   }), columns);
 }
-defaultRowRenderer.propTypes = process.env.NODE_ENV === 'production' ? null : bpfrpt_proptype_RowRendererParams === PropTypes.any ? {} : bpfrpt_proptype_RowRendererParams;
-import { bpfrpt_proptype_RowRendererParams } from "./types";
-import PropTypes from "prop-types";

@@ -13,14 +13,16 @@ var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/creat
 
 var _Section = _interopRequireDefault(require("./Section"));
 
-var _types = require("./types");
-
 /**
  * Window Sections are used to group nearby cells.
  * This enables us to more quickly determine which cells to display in a given region of the Window.
  * 
  */
 var SECTION_SIZE = 100;
+/*:: type RegisterCellParams = {
+  cellMetadatum: SizeAndPositionInfo,
+  index: number,
+};*/
 
 /**
  * Contains 0 to many Sections.
@@ -45,7 +47,9 @@ function () {
 
   (0, _createClass2["default"])(SectionManager, [{
     key: "getCellIndices",
-    value: function getCellIndices(_ref) {
+    value: function getCellIndices(_ref)
+    /*: Array<number>*/
+    {
       var height = _ref.height,
           width = _ref.width,
           x = _ref.x,
@@ -70,7 +74,9 @@ function () {
 
   }, {
     key: "getCellMetadata",
-    value: function getCellMetadata(_ref2) {
+    value: function getCellMetadata(_ref2)
+    /*: SizeAndPositionInfo*/
+    {
       var index = _ref2.index;
       return this._cellMetadata[index];
     }
@@ -78,7 +84,9 @@ function () {
 
   }, {
     key: "getSections",
-    value: function getSections(_ref3) {
+    value: function getSections(_ref3)
+    /*: Array<Section>*/
+    {
       var height = _ref3.height,
           width = _ref3.width,
           x = _ref3.x,

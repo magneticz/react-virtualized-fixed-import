@@ -1,8 +1,8 @@
 "use strict";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
 var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -31,13 +31,19 @@ var React = _interopRequireWildcard(require("react"));
 
 var _clsx = _interopRequireDefault(require("clsx"));
 
-var _types = require("./types");
+/*:: import type {
+  NoContentRenderer,
+  Alignment,
+  CellSize,
+  CellPosition,
+  OverscanIndicesGetter,
+  RenderedSection,
+  CellRendererParams,
+  Scroll as GridScroll,
+} from '../Grid';*/
 
-var _propTypes = _interopRequireDefault(require("prop-types"));
-
-var _class, _temp;
-
-var List = (_temp = _class =
+/*:: import type {RowRenderer, RenderedRows, Scroll} from './types';*/
+var List =
 /*#__PURE__*/
 function (_React$PureComponent) {
   (0, _inherits2["default"])(List, _React$PureComponent);
@@ -85,7 +91,9 @@ function (_React$PureComponent) {
         parent: parent
       });
     });
-    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "_setRef", function (ref) {
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "_setRef", function (ref
+    /*: ?React.ElementRef<typeof Grid>*/
+    ) {
       _this.Grid = ref;
     });
     (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "_onScroll", function (_ref2) {
@@ -190,7 +198,9 @@ function (_React$PureComponent) {
   }, {
     key: "recomputeRowHeights",
     value: function recomputeRowHeights() {
-      var index = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+      var index
+      /*: number*/
+      = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
       if (this.Grid) {
         this.Grid.recomputeGridSize({
@@ -204,7 +214,9 @@ function (_React$PureComponent) {
   }, {
     key: "scrollToPosition",
     value: function scrollToPosition() {
-      var scrollTop = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+      var scrollTop
+      /*: number*/
+      = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
       if (this.Grid) {
         this.Grid.scrollToPosition({
@@ -217,7 +229,9 @@ function (_React$PureComponent) {
   }, {
     key: "scrollToRow",
     value: function scrollToRow() {
-      var index = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+      var index
+      /*: number*/
+      = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
       if (this.Grid) {
         this.Grid.scrollToCell({
@@ -250,85 +264,8 @@ function (_React$PureComponent) {
     }
   }]);
   return List;
-}(React.PureComponent), (0, _defineProperty2["default"])(_class, "propTypes", process.env.NODE_ENV === 'production' ? null : {
-  "aria-label": _propTypes["default"].string,
+}(React.PureComponent);
 
-  /**
-   * Removes fixed height from the scrollingContainer so that the total height
-   * of rows can stretch the window. Intended for use with WindowScroller
-   */
-  "autoHeight": _propTypes["default"].bool.isRequired,
-
-  /** Optional CSS class name */
-  "className": _propTypes["default"].string,
-
-  /**
-   * Used to estimate the total height of a List before all of its rows have actually been measured.
-   * The estimated total height is adjusted as rows are rendered.
-   */
-  "estimatedRowSize": _propTypes["default"].number.isRequired,
-
-  /** Height constraint for list (determines how many actual rows are rendered) */
-  "height": _propTypes["default"].number.isRequired,
-
-  /** Optional renderer to be used in place of rows when rowCount is 0 */
-  "noRowsRenderer": function noRowsRenderer() {
-    return (typeof _Grid.bpfrpt_proptype_NoContentRenderer === "function" ? _Grid.bpfrpt_proptype_NoContentRenderer.isRequired ? _Grid.bpfrpt_proptype_NoContentRenderer.isRequired : _Grid.bpfrpt_proptype_NoContentRenderer : _propTypes["default"].shape(_Grid.bpfrpt_proptype_NoContentRenderer).isRequired).apply(this, arguments);
-  },
-
-  /** Callback invoked with information about the slice of rows that were just rendered.  */
-  "onRowsRendered": _propTypes["default"].func.isRequired,
-
-  /**
-   * Callback invoked whenever the scroll offset changes within the inner scrollable region.
-   * This callback can be used to sync scrolling between lists, tables, or grids.
-   */
-  "onScroll": _propTypes["default"].func.isRequired,
-
-  /** See Grid#overscanIndicesGetter */
-  "overscanIndicesGetter": function overscanIndicesGetter() {
-    return (typeof _Grid.bpfrpt_proptype_OverscanIndicesGetter === "function" ? _Grid.bpfrpt_proptype_OverscanIndicesGetter.isRequired ? _Grid.bpfrpt_proptype_OverscanIndicesGetter.isRequired : _Grid.bpfrpt_proptype_OverscanIndicesGetter : _propTypes["default"].shape(_Grid.bpfrpt_proptype_OverscanIndicesGetter).isRequired).apply(this, arguments);
-  },
-
-  /**
-   * Number of rows to render above/below the visible bounds of the list.
-   * These rows can help for smoother scrolling on touch devices.
-   */
-  "overscanRowCount": _propTypes["default"].number.isRequired,
-
-  /** Either a fixed row height (number) or a function that returns the height of a row given its index.  */
-  "rowHeight": function rowHeight() {
-    return (typeof _Grid.bpfrpt_proptype_CellSize === "function" ? _Grid.bpfrpt_proptype_CellSize.isRequired ? _Grid.bpfrpt_proptype_CellSize.isRequired : _Grid.bpfrpt_proptype_CellSize : _propTypes["default"].shape(_Grid.bpfrpt_proptype_CellSize).isRequired).apply(this, arguments);
-  },
-
-  /** Responsible for rendering a row given an index; ({ index: number }): node */
-  "rowRenderer": function rowRenderer() {
-    return (typeof _types.bpfrpt_proptype_RowRenderer === "function" ? _types.bpfrpt_proptype_RowRenderer.isRequired ? _types.bpfrpt_proptype_RowRenderer.isRequired : _types.bpfrpt_proptype_RowRenderer : _propTypes["default"].shape(_types.bpfrpt_proptype_RowRenderer).isRequired).apply(this, arguments);
-  },
-
-  /** Number of rows in list. */
-  "rowCount": _propTypes["default"].number.isRequired,
-
-  /** See Grid#scrollToAlignment */
-  "scrollToAlignment": function scrollToAlignment() {
-    return (typeof _Grid.bpfrpt_proptype_Alignment === "function" ? _Grid.bpfrpt_proptype_Alignment.isRequired ? _Grid.bpfrpt_proptype_Alignment.isRequired : _Grid.bpfrpt_proptype_Alignment : _propTypes["default"].shape(_Grid.bpfrpt_proptype_Alignment).isRequired).apply(this, arguments);
-  },
-
-  /** Row index to ensure visible (by forcefully scrolling if necessary) */
-  "scrollToIndex": _propTypes["default"].number.isRequired,
-
-  /** Vertical offset. */
-  "scrollTop": _propTypes["default"].number,
-
-  /** Optional inline style */
-  "style": _propTypes["default"].object.isRequired,
-
-  /** Tab index for focus */
-  "tabIndex": _propTypes["default"].number,
-
-  /** Width of list */
-  "width": _propTypes["default"].number.isRequired
-}), _temp);
 exports["default"] = List;
 (0, _defineProperty2["default"])(List, "defaultProps", {
   autoHeight: false,

@@ -1,4 +1,6 @@
 import * as React from 'react';
+/*:: import type {HeaderRowRendererParams} from './types';*/
+
 export default function defaultHeaderRowRenderer(_ref) {
   var className = _ref.className,
       columns = _ref.columns,
@@ -9,6 +11,3 @@ export default function defaultHeaderRowRenderer(_ref) {
     style: style
   }, columns);
 }
-defaultHeaderRowRenderer.propTypes = process.env.NODE_ENV === 'production' ? null : bpfrpt_proptype_HeaderRowRendererParams === PropTypes.any ? {} : bpfrpt_proptype_HeaderRowRendererParams;
-import { bpfrpt_proptype_HeaderRowRendererParams } from "./types";
-import PropTypes from "prop-types";

@@ -5,18 +5,35 @@ import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized";
 import _inherits from "@babel/runtime/helpers/inherits";
 import _defineProperty from "@babel/runtime/helpers/defineProperty";
-
-var _class, _temp;
-
 import * as React from 'react';
 import { findDOMNode } from 'react-dom';
+/*:: import type {CellMeasureCache} from './types';*/
+
+/*:: type Children = (params: {measure: () => void}) => React.Element<*>;*/
+
+/*:: type Cell = {
+  columnIndex: number,
+  rowIndex: number,
+};*/
+
+/*:: type Props = {
+  cache: CellMeasureCache,
+  children: Children | React.Element<*>,
+  columnIndex?: number,
+  index?: number,
+  parent: {
+    invalidateCellSizeAfterRender?: (cell: Cell) => void,
+    recomputeGridSize?: (cell: Cell) => void,
+  },
+  rowIndex?: number,
+};*/
 
 /**
  * Wraps a cell and measures its rendered content.
  * Measurements are stored in a per-cell cache.
  * Cached-content is not be re-measured.
  */
-var CellMeasurer = (_temp = _class =
+var CellMeasurer =
 /*#__PURE__*/
 function (_React$PureComponent) {
   _inherits(CellMeasurer, _React$PureComponent);
@@ -172,19 +189,8 @@ function (_React$PureComponent) {
   }]);
 
   return CellMeasurer;
-}(React.PureComponent), _defineProperty(_class, "propTypes", process.env.NODE_ENV === 'production' ? null : {
-  "cache": function cache() {
-    return (typeof bpfrpt_proptype_CellMeasureCache === "function" ? bpfrpt_proptype_CellMeasureCache.isRequired ? bpfrpt_proptype_CellMeasureCache.isRequired : bpfrpt_proptype_CellMeasureCache : PropTypes.shape(bpfrpt_proptype_CellMeasureCache).isRequired).apply(this, arguments);
-  },
-  "children": PropTypes.oneOfType([PropTypes.func, PropTypes.node]).isRequired,
-  "columnIndex": PropTypes.number,
-  "index": PropTypes.number,
-  "parent": PropTypes.shape({
-    invalidateCellSizeAfterRender: PropTypes.func,
-    recomputeGridSize: PropTypes.func
-  }).isRequired,
-  "rowIndex": PropTypes.number
-}), _temp); // Used for DEV mode warning check
+}(React.PureComponent); // Used for DEV mode warning check
+
 
 _defineProperty(CellMeasurer, "__internalCellMeasurerFlag", false);
 
@@ -193,6 +199,3 @@ export { CellMeasurer as default };
 if (process.env.NODE_ENV !== 'production') {
   CellMeasurer.__internalCellMeasurerFlag = true;
 }
-
-import { bpfrpt_proptype_CellMeasureCache } from "./types";
-import PropTypes from "prop-types";

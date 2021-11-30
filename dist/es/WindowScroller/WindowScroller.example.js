@@ -5,9 +5,6 @@ import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized";
 import _inherits from "@babel/runtime/helpers/inherits";
 import _defineProperty from "@babel/runtime/helpers/defineProperty";
-
-var _class, _temp;
-
 import clsx from 'clsx';
 import Immutable from 'immutable';
 import PropTypes from 'prop-types';
@@ -18,7 +15,12 @@ import WindowScroller from './WindowScroller';
 import List from '../List';
 import AutoSizer from '../AutoSizer';
 import styles from './WindowScroller.example.css';
-var WindowScrollerExample = (_temp = _class =
+/*:: type State = {
+  scrollToIndex: number,
+  showHeaderText: boolean,
+};*/
+
+var WindowScrollerExample =
 /*#__PURE__*/
 function (_React$PureComponent) {
   _inherits(WindowScrollerExample, _React$PureComponent);
@@ -171,7 +173,7 @@ function (_React$PureComponent) {
   }]);
 
   return WindowScrollerExample;
-}(React.PureComponent), _defineProperty(_class, "propTypes", process.env.NODE_ENV === 'production' ? null : {}), _temp);
+}(React.PureComponent);
 
 _defineProperty(WindowScrollerExample, "contextTypes", {
   customElement: PropTypes.any,

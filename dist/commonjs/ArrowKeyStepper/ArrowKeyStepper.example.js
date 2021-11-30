@@ -1,8 +1,8 @@
 "use strict";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
 var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -27,7 +27,7 @@ var React = _interopRequireWildcard(require("react"));
 
 var _ContentBox = require("../demo/ContentBox");
 
-var _ = _interopRequireWildcard(require("./"));
+var _ = _interopRequireDefault(require("./"));
 
 var _AutoSizer = _interopRequireDefault(require("../AutoSizer"));
 
@@ -37,9 +37,7 @@ var _clsx2 = _interopRequireDefault(require("clsx"));
 
 var _ArrowKeyStepperExample = _interopRequireDefault(require("./ArrowKeyStepper.example.css"));
 
-var _class, _temp;
-
-var ArrowKeyStepperExample = (_temp = _class =
+var ArrowKeyStepperExample =
 /*#__PURE__*/
 function (_React$PureComponent) {
   (0, _inherits2["default"])(ArrowKeyStepperExample, _React$PureComponent);
@@ -100,7 +98,9 @@ function (_React$PureComponent) {
         scrollToRow: scrollToRow
       });
     });
-    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "_onClickableChange", function (event) {
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "_onClickableChange", function (event
+    /*: Event*/
+    ) {
       if (event.target instanceof HTMLInputElement) {
         _this.setState({
           isClickable: event.target.checked,
@@ -203,5 +203,6 @@ function (_React$PureComponent) {
     }
   }]);
   return ArrowKeyStepperExample;
-}(React.PureComponent), (0, _defineProperty2["default"])(_class, "propTypes", process.env.NODE_ENV === 'production' ? null : {}), _temp);
+}(React.PureComponent);
+
 exports["default"] = ArrowKeyStepperExample;

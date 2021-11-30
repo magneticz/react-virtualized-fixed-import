@@ -13,10 +13,6 @@ var React = _interopRequireWildcard(require("react"));
 
 var _SortIndicator = _interopRequireDefault(require("./SortIndicator"));
 
-var _types = require("./types");
-
-var _propTypes = _interopRequireDefault(require("prop-types"));
-
 /**
  * Default table header renderer.
  */
@@ -41,5 +37,3 @@ function defaultHeaderRenderer(_ref) {
 
   return children;
 }
-
-defaultHeaderRenderer.propTypes = process.env.NODE_ENV === 'production' ? null : _types.bpfrpt_proptype_HeaderRendererParams === _propTypes["default"].any ? {} : _types.bpfrpt_proptype_HeaderRendererParams;

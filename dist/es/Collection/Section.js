@@ -1,6 +1,8 @@
 import _classCallCheck from "@babel/runtime/helpers/classCallCheck";
 import _createClass from "@babel/runtime/helpers/createClass";
 
+/*:: import type {Index, SizeAndPositionInfo} from './types';*/
+
 /**
  * A section of the Window.
  * Window Sections are used to group nearby cells.
@@ -43,7 +45,9 @@ function () {
 
   }, {
     key: "getCellIndices",
-    value: function getCellIndices() {
+    value: function getCellIndices()
+    /*: Array<number>*/
+    {
       return this._indices;
     }
     /** Intended for debugger/test purposes only */
@@ -59,5 +63,3 @@ function () {
 }();
 
 export { Section as default };
-import { bpfrpt_proptype_Index } from "./types";
-import { bpfrpt_proptype_SizeAndPositionInfo } from "./types";

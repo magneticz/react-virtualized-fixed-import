@@ -1,8 +1,8 @@
 "use strict";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
 var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -33,16 +33,12 @@ var _dimensions = require("./utils/dimensions");
 
 var _detectElementResize = _interopRequireDefault(require("../vendor/detectElementResize"));
 
-var _propTypes = _interopRequireDefault(require("prop-types"));
-
-var _class, _temp;
-
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 /**
- * Specifies the number of miliseconds during which to disable pointer events while a scroll is in progress.
+ * Specifies the number of milliseconds during which to disable pointer events while a scroll is in progress.
  * This improves performance and makes scrolling smoother.
  */
 var IS_SCROLLING_TIMEOUT = 150;
@@ -52,7 +48,7 @@ var getWindow = function getWindow() {
   return typeof window !== 'undefined' ? window : undefined;
 };
 
-var WindowScroller = (_temp = _class =
+var WindowScroller =
 /*#__PURE__*/
 function (_React$PureComponent) {
   (0, _inherits2["default"])(WindowScroller, _React$PureComponent);
@@ -159,7 +155,9 @@ function (_React$PureComponent) {
   (0, _createClass2["default"])(WindowScroller, [{
     key: "updatePosition",
     value: function updatePosition() {
-      var scrollElement = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.props.scrollElement;
+      var scrollElement
+      /*: ?Element*/
+      = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.props.scrollElement;
       var onResize = this.props.onResize;
       var _this$state = this.state,
           height = _this$state.height,
@@ -184,6 +182,12 @@ function (_React$PureComponent) {
           width: dimensions.width
         });
       }
+
+      if (this.props.updateScrollTopOnUpdatePosition === true) {
+        this.__handleWindowScrollEvent();
+
+        this.__resetIsScrolling();
+      }
     }
   }, {
     key: "componentDidMount",
@@ -202,7 +206,11 @@ function (_React$PureComponent) {
     }
   }, {
     key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps, prevState) {
+    value: function componentDidUpdate(prevProps
+    /*: Props*/
+    , prevState
+    /*: State*/
+    ) {
       var scrollElement = this.props.scrollElement;
       var prevScrollElement = prevProps.scrollElement;
 
@@ -251,36 +259,8 @@ function (_React$PureComponent) {
     }
   }]);
   return WindowScroller;
-}(React.PureComponent), (0, _defineProperty2["default"])(_class, "propTypes", process.env.NODE_ENV === 'production' ? null : {
-  /**
-   * Function responsible for rendering children.
-   * This function should implement the following signature:
-   * ({ height, isScrolling, scrollLeft, scrollTop, width }) => PropTypes.element
-   */
-  "children": _propTypes["default"].func.isRequired,
+}(React.PureComponent);
 
-  /** Callback to be invoked on-resize: ({ height, width }) */
-  "onResize": _propTypes["default"].func.isRequired,
-
-  /** Callback to be invoked on-scroll: ({ scrollLeft, scrollTop }) */
-  "onScroll": _propTypes["default"].func.isRequired,
-
-  /** Element to attach scroll event listeners. Defaults to window. */
-  "scrollElement": _propTypes["default"].oneOfType([_propTypes["default"].any, function () {
-    return (typeof Element === "function" ? _propTypes["default"].instanceOf(Element) : _propTypes["default"].any).apply(this, arguments);
-  }]),
-
-  /**
-   * Wait this amount of time after the last scroll event before resetting child `pointer-events`.
-   */
-  "scrollingResetTimeInterval": _propTypes["default"].number.isRequired,
-
-  /** Height used for server-side rendering */
-  "serverHeight": _propTypes["default"].number.isRequired,
-
-  /** Width used for server-side rendering */
-  "serverWidth": _propTypes["default"].number.isRequired
-}), _temp);
 exports["default"] = WindowScroller;
 (0, _defineProperty2["default"])(WindowScroller, "defaultProps", {
   onResize: function onResize() {},

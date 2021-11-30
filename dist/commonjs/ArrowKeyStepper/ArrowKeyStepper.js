@@ -1,8 +1,8 @@
 "use strict";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
 var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -27,19 +27,11 @@ var React = _interopRequireWildcard(require("react"));
 
 var _reactLifecyclesCompat = require("react-lifecycles-compat");
 
-var _Grid = require("../Grid");
-
-var _types = require("./types");
-
-var _propTypes = _interopRequireDefault(require("prop-types"));
-
-var _class, _temp;
-
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-var ArrowKeyStepper = (_temp = _class =
+var ArrowKeyStepper =
 /*#__PURE__*/
 function (_React$PureComponent) {
   (0, _inherits2["default"])(ArrowKeyStepper, _React$PureComponent);
@@ -68,7 +60,9 @@ function (_React$PureComponent) {
     (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "_columnStopIndex", 0);
     (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "_rowStartIndex", 0);
     (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "_rowStopIndex", 0);
-    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "_onKeyDown", function (event) {
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "_onKeyDown", function (event
+    /*: KeyboardEvent*/
+    ) {
       var _this$props = _this.props,
           columnCount = _this$props.columnCount,
           disabled = _this$props.disabled,
@@ -189,7 +183,13 @@ function (_React$PureComponent) {
     }
   }], [{
     key: "getDerivedStateFromProps",
-    value: function getDerivedStateFromProps(nextProps, prevState) {
+    value: function getDerivedStateFromProps(nextProps
+    /*: Props*/
+    , prevState
+    /*: State*/
+    )
+    /*: $Shape<State>*/
+    {
       if (nextProps.isControlled) {
         return {};
       }
@@ -209,18 +209,8 @@ function (_React$PureComponent) {
     }
   }]);
   return ArrowKeyStepper;
-}(React.PureComponent), (0, _defineProperty2["default"])(_class, "propTypes", process.env.NODE_ENV === 'production' ? null : {
-  "children": _propTypes["default"].func.isRequired,
-  "className": _propTypes["default"].string,
-  "columnCount": _propTypes["default"].number.isRequired,
-  "disabled": _propTypes["default"].bool.isRequired,
-  "isControlled": _propTypes["default"].bool.isRequired,
-  "mode": _propTypes["default"].oneOf(["cells", "edges"]).isRequired,
-  "onScrollToChange": _propTypes["default"].func,
-  "rowCount": _propTypes["default"].number.isRequired,
-  "scrollToColumn": _propTypes["default"].number.isRequired,
-  "scrollToRow": _propTypes["default"].number.isRequired
-}), _temp);
+}(React.PureComponent);
+
 (0, _defineProperty2["default"])(ArrowKeyStepper, "defaultProps", {
   disabled: false,
   isControlled: false,

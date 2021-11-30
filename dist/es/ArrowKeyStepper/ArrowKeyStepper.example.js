@@ -5,17 +5,23 @@ import _getPrototypeOf from "@babel/runtime/helpers/getPrototypeOf";
 import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized";
 import _inherits from "@babel/runtime/helpers/inherits";
 import _defineProperty from "@babel/runtime/helpers/defineProperty";
-
-var _class, _temp;
-
 import * as React from 'react';
 import { ContentBox, ContentBoxHeader, ContentBoxParagraph } from '../demo/ContentBox';
 import ArrowKeyStepper from './';
+/*:: import { type ScrollIndices } from './';*/
+
 import AutoSizer from '../AutoSizer';
 import Grid from '../Grid';
 import clsx from 'clsx';
 import styles from './ArrowKeyStepper.example.css';
-var ArrowKeyStepperExample = (_temp = _class =
+/*:: type State = {
+  mode: 'edges' | 'cells',
+  isClickable: boolean,
+  scrollToColumn: number,
+  scrollToRow: number,
+};*/
+
+var ArrowKeyStepperExample =
 /*#__PURE__*/
 function (_React$PureComponent) {
   _inherits(ArrowKeyStepperExample, _React$PureComponent);
@@ -82,7 +88,9 @@ function (_React$PureComponent) {
       });
     });
 
-    _defineProperty(_assertThisInitialized(_this), "_onClickableChange", function (event) {
+    _defineProperty(_assertThisInitialized(_this), "_onClickableChange", function (event
+    /*: Event*/
+    ) {
       if (event.target instanceof HTMLInputElement) {
         _this.setState({
           isClickable: event.target.checked,
@@ -187,6 +195,6 @@ function (_React$PureComponent) {
   }]);
 
   return ArrowKeyStepperExample;
-}(React.PureComponent), _defineProperty(_class, "propTypes", process.env.NODE_ENV === 'production' ? null : {}), _temp);
+}(React.PureComponent);
+
 export { ArrowKeyStepperExample as default };
-import { bpfrpt_proptype_ScrollIndices } from "./";

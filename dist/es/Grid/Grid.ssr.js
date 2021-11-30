@@ -5,6 +5,10 @@
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 import Grid from './Grid';
+/*:: declare var test: any;*/
+
+/*:: declare var expect: any;*/
+
 test('should render Grid with dom server', function () {
   var rendered = ReactDOMServer.renderToString(React.createElement(Grid, {
     cellRenderer: function cellRenderer(_ref) {

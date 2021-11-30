@@ -13,10 +13,6 @@ var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends")
 
 var React = _interopRequireWildcard(require("react"));
 
-var _types = require("./types");
-
-var _propTypes = _interopRequireDefault(require("prop-types"));
-
 /**
  * Default row renderer for Table.
  */
@@ -98,5 +94,3 @@ function defaultRowRenderer(_ref) {
     style: style
   }), columns);
 }
-
-defaultRowRenderer.propTypes = process.env.NODE_ENV === 'production' ? null : _types.bpfrpt_proptype_RowRendererParams === _propTypes["default"].any ? {} : _types.bpfrpt_proptype_RowRendererParams;

@@ -1,6 +1,35 @@
 /**
  * Helper method that determines when to recalculate row or column metadata.
  */
+
+/*:: type Params<T> = {
+  // Number of rows or columns in the current axis
+  cellCount: number,
+
+  // Width or height of cells for the current axis
+  cellSize: ?number,
+
+  // Method to invoke if cell metadata should be recalculated
+  computeMetadataCallback: (props: T) => void,
+
+  // Parameters to pass to :computeMetadataCallback
+  computeMetadataCallbackProps: T,
+
+  // Newly updated number of rows or columns in the current axis
+  nextCellsCount: number,
+
+  // Newly updated width or height of cells for the current axis
+  nextCellSize: ?number,
+
+  // Newly updated scroll-to-index
+  nextScrollToIndex: number,
+
+  // Scroll-to-index
+  scrollToIndex: number,
+
+  // Callback to invoke if the scroll position should be recalculated
+  updateScrollOffsetForScrollToIndex: () => void,
+};*/
 export default function calculateSizeAndPositionDataAndUpdateScrollOffset(_ref) {
   var cellCount = _ref.cellCount,
       cellSize = _ref.cellSize,

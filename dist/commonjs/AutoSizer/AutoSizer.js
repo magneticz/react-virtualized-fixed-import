@@ -1,8 +1,8 @@
 "use strict";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
 var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -27,15 +27,11 @@ var React = _interopRequireWildcard(require("react"));
 
 var _detectElementResize = _interopRequireDefault(require("../vendor/detectElementResize"));
 
-var _propTypes = _interopRequireDefault(require("prop-types"));
-
-var _class, _temp;
-
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-var AutoSizer = (_temp = _class =
+var AutoSizer =
 /*#__PURE__*/
 function (_React$Component) {
   (0, _inherits2["default"])(AutoSizer, _React$Component);
@@ -94,7 +90,9 @@ function (_React$Component) {
         }
       }
     });
-    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "_setRef", function (autoSizer) {
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "_setRef", function (autoSizer
+    /*: ?HTMLElement*/
+    ) {
       _this._autoSizer = autoSizer;
     });
     return _this;
@@ -142,10 +140,14 @@ function (_React$Component) {
       // Inner component should overflow and use calculated width/height.
       // See issue #68 for more information.
 
-      var outerStyle = {
+      var outerStyle
+      /*: Object*/
+      = {
         overflow: 'visible'
       };
-      var childParams = {};
+      var childParams
+      /*: Object*/
+      = {};
 
       if (!disableHeight) {
         outerStyle.height = 0;
@@ -178,34 +180,8 @@ function (_React$Component) {
     }
   }]);
   return AutoSizer;
-}(React.Component), (0, _defineProperty2["default"])(_class, "propTypes", process.env.NODE_ENV === 'production' ? null : {
-  /** Function responsible for rendering children.*/
-  "children": _propTypes["default"].func.isRequired,
+}(React.Component);
 
-  /** Optional custom CSS class name to attach to root AutoSizer element.  */
-  "className": _propTypes["default"].string,
-
-  /** Default height to use for initial render; useful for SSR */
-  "defaultHeight": _propTypes["default"].number,
-
-  /** Default width to use for initial render; useful for SSR */
-  "defaultWidth": _propTypes["default"].number,
-
-  /** Disable dynamic :height property */
-  "disableHeight": _propTypes["default"].bool.isRequired,
-
-  /** Disable dynamic :width property */
-  "disableWidth": _propTypes["default"].bool.isRequired,
-
-  /** Nonce of the inlined stylesheet for Content Security Policy */
-  "nonce": _propTypes["default"].string,
-
-  /** Callback to be invoked on-resize */
-  "onResize": _propTypes["default"].func.isRequired,
-
-  /** Optional inline style */
-  "style": _propTypes["default"].object
-}), _temp);
 exports["default"] = AutoSizer;
 (0, _defineProperty2["default"])(AutoSizer, "defaultProps", {
   onResize: function onResize() {},

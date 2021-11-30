@@ -11,7 +11,7 @@ var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/cl
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
 
-var _types = require("./types");
+/*:: import type {Index, SizeAndPositionInfo} from './types';*/
 
 /**
  * A section of the Window.
@@ -53,7 +53,9 @@ function () {
 
   }, {
     key: "getCellIndices",
-    value: function getCellIndices() {
+    value: function getCellIndices()
+    /*: Array<number>*/
+    {
       return this._indices;
     }
     /** Intended for debugger/test purposes only */

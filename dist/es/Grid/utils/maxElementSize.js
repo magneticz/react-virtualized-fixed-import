@@ -9,7 +9,9 @@ var isChrome = function isChrome() {
   return !!window.chrome;
 };
 
-export var getMaxElementSize = function getMaxElementSize() {
+export var getMaxElementSize = function getMaxElementSize()
+/*: number*/
+{
   if (isBrowser()) {
     if (isChrome()) {
       return CHROME_MAX_ELEMENT_SIZE;

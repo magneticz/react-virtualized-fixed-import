@@ -6,15 +6,59 @@ import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized
 import _inherits from "@babel/runtime/helpers/inherits";
 import _defineProperty from "@babel/runtime/helpers/defineProperty";
 
-var _class, _temp;
-
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 import * as React from 'react';
 import createDetectElementResize from '../vendor/detectElementResize';
-var AutoSizer = (_temp = _class =
+/*:: type Size = {
+  height: number,
+  width: number,
+};*/
+
+/*:: type Props = {
+  /** Function responsible for rendering children.*-/
+  children: Size => React.Element<*>,
+
+  /** Optional custom CSS class name to attach to root AutoSizer element.  *-/
+  className?: string,
+
+  /** Default height to use for initial render; useful for SSR *-/
+  defaultHeight?: number,
+
+  /** Default width to use for initial render; useful for SSR *-/
+  defaultWidth?: number,
+
+  /** Disable dynamic :height property *-/
+  disableHeight: boolean,
+
+  /** Disable dynamic :width property *-/
+  disableWidth: boolean,
+
+  /** Nonce of the inlined stylesheet for Content Security Policy *-/
+  nonce?: string,
+
+  /** Callback to be invoked on-resize *-/
+  onResize: Size => void,
+
+  /** Optional inline style *-/
+  style: ?Object,
+};*/
+
+/*:: type State = {
+  height: number,
+  width: number,
+};*/
+
+/*:: type ResizeHandler = (element: HTMLElement, onResize: () => void) => void;*/
+
+/*:: type DetectElementResize = {
+  addResizeListener: ResizeHandler,
+  removeResizeListener: ResizeHandler,
+};*/
+
+var AutoSizer =
 /*#__PURE__*/
 function (_React$Component) {
   _inherits(AutoSizer, _React$Component);
@@ -80,7 +124,9 @@ function (_React$Component) {
       }
     });
 
-    _defineProperty(_assertThisInitialized(_this), "_setRef", function (autoSizer) {
+    _defineProperty(_assertThisInitialized(_this), "_setRef", function (autoSizer
+    /*: ?HTMLElement*/
+    ) {
       _this._autoSizer = autoSizer;
     });
 
@@ -129,10 +175,14 @@ function (_React$Component) {
       // Inner component should overflow and use calculated width/height.
       // See issue #68 for more information.
 
-      var outerStyle = {
+      var outerStyle
+      /*: Object*/
+      = {
         overflow: 'visible'
       };
-      var childParams = {};
+      var childParams
+      /*: Object*/
+      = {};
 
       if (!disableHeight) {
         outerStyle.height = 0;
@@ -166,34 +216,7 @@ function (_React$Component) {
   }]);
 
   return AutoSizer;
-}(React.Component), _defineProperty(_class, "propTypes", process.env.NODE_ENV === 'production' ? null : {
-  /** Function responsible for rendering children.*/
-  "children": PropTypes.func.isRequired,
-
-  /** Optional custom CSS class name to attach to root AutoSizer element.  */
-  "className": PropTypes.string,
-
-  /** Default height to use for initial render; useful for SSR */
-  "defaultHeight": PropTypes.number,
-
-  /** Default width to use for initial render; useful for SSR */
-  "defaultWidth": PropTypes.number,
-
-  /** Disable dynamic :height property */
-  "disableHeight": PropTypes.bool.isRequired,
-
-  /** Disable dynamic :width property */
-  "disableWidth": PropTypes.bool.isRequired,
-
-  /** Nonce of the inlined stylesheet for Content Security Policy */
-  "nonce": PropTypes.string,
-
-  /** Callback to be invoked on-resize */
-  "onResize": PropTypes.func.isRequired,
-
-  /** Optional inline style */
-  "style": PropTypes.object
-}), _temp);
+}(React.Component);
 
 _defineProperty(AutoSizer, "defaultProps", {
   onResize: function onResize() {},
@@ -203,4 +226,3 @@ _defineProperty(AutoSizer, "defaultProps", {
 });
 
 export { AutoSizer as default };
-import PropTypes from "prop-types";

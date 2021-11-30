@@ -11,6 +11,7 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
+/*:: import type {CellPosition} from '../Grid';*/
 import clsx from 'clsx';
 import Column from './Column';
 import PropTypes from 'prop-types';
@@ -806,4 +807,3 @@ Table.propTypes = process.env.NODE_ENV !== "production" ? {
   /** Width of list */
   width: PropTypes.number.isRequired
 } : {};
-import { bpfrpt_proptype_CellPosition } from "../Grid";

@@ -6,8 +6,6 @@ import _assertThisInitialized from "@babel/runtime/helpers/assertThisInitialized
 import _inherits from "@babel/runtime/helpers/inherits";
 import _defineProperty from "@babel/runtime/helpers/defineProperty";
 
-var _class, _temp;
-
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -17,9 +15,62 @@ import * as ReactDOM from 'react-dom';
 import { registerScrollListener, unregisterScrollListener } from './utils/onScroll';
 import { getDimensions, getPositionOffset, getScrollOffset } from './utils/dimensions';
 import createDetectElementResize from '../vendor/detectElementResize';
+/*:: type Props = {
+  /**
+   * Function responsible for rendering children.
+   * This function should implement the following signature:
+   * ({ height, isScrolling, scrollLeft, scrollTop, width }) => PropTypes.element
+   *-/
+  children: ({
+    onChildScroll: ({scrollTop: number}) => void,
+    registerChild: (?Element) => void,
+    height: number,
+    isScrolling: boolean,
+    scrollLeft: number,
+    scrollTop: number,
+    width: number,
+  }) => React.Node,
+
+  /** Callback to be invoked on-resize: ({ height, width }) *-/
+  onResize: ({height: number, width: number}) => void,
+
+  /** Callback to be invoked on-scroll: ({ scrollLeft, scrollTop }) *-/
+  onScroll: ({scrollLeft: number, scrollTop: number}) => void,
+
+  /** Element to attach scroll event listeners. Defaults to window. *-/
+  scrollElement: ?(typeof window | Element),
+  /**
+   * Wait this amount of time after the last scroll event before resetting child `pointer-events`.
+   *-/
+  scrollingResetTimeInterval: number,
+
+  /** Height used for server-side rendering *-/
+  serverHeight: number,
+
+  /** Width used for server-side rendering *-/
+  serverWidth: number,
+
+  /** Force scrollTop updates when .updatePosition is called, fixing forced header height change updates *-/
+  updateScrollTopOnUpdatePosition?: boolean,
+};*/
+
+/*:: type State = {
+  height: number,
+  width: number,
+  isScrolling: boolean,
+  scrollLeft: number,
+  scrollTop: number,
+};*/
+
+/*:: type ResizeHandler = (element: Element, onResize: () => void) => void;*/
+
+/*:: type DetectElementResize = {
+  addResizeListener: ResizeHandler,
+  removeResizeListener: ResizeHandler,
+};*/
 
 /**
- * Specifies the number of miliseconds during which to disable pointer events while a scroll is in progress.
+ * Specifies the number of milliseconds during which to disable pointer events while a scroll is in progress.
  * This improves performance and makes scrolling smoother.
  */
 export var IS_SCROLLING_TIMEOUT = 150;
@@ -28,7 +79,7 @@ var getWindow = function getWindow() {
   return typeof window !== 'undefined' ? window : undefined;
 };
 
-var WindowScroller = (_temp = _class =
+var WindowScroller =
 /*#__PURE__*/
 function (_React$PureComponent) {
   _inherits(WindowScroller, _React$PureComponent);
@@ -150,7 +201,9 @@ function (_React$PureComponent) {
   _createClass(WindowScroller, [{
     key: "updatePosition",
     value: function updatePosition() {
-      var scrollElement = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.props.scrollElement;
+      var scrollElement
+      /*: ?Element*/
+      = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.props.scrollElement;
       var onResize = this.props.onResize;
       var _this$state = this.state,
           height = _this$state.height,
@@ -175,6 +228,12 @@ function (_React$PureComponent) {
           width: dimensions.width
         });
       }
+
+      if (this.props.updateScrollTopOnUpdatePosition === true) {
+        this.__handleWindowScrollEvent();
+
+        this.__resetIsScrolling();
+      }
     }
   }, {
     key: "componentDidMount",
@@ -193,7 +252,11 @@ function (_React$PureComponent) {
     }
   }, {
     key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps, prevState) {
+    value: function componentDidUpdate(prevProps
+    /*: Props*/
+    , prevState
+    /*: State*/
+    ) {
       var scrollElement = this.props.scrollElement;
       var prevScrollElement = prevProps.scrollElement;
 
@@ -243,36 +306,7 @@ function (_React$PureComponent) {
   }]);
 
   return WindowScroller;
-}(React.PureComponent), _defineProperty(_class, "propTypes", process.env.NODE_ENV === 'production' ? null : {
-  /**
-   * Function responsible for rendering children.
-   * This function should implement the following signature:
-   * ({ height, isScrolling, scrollLeft, scrollTop, width }) => PropTypes.element
-   */
-  "children": PropTypes.func.isRequired,
-
-  /** Callback to be invoked on-resize: ({ height, width }) */
-  "onResize": PropTypes.func.isRequired,
-
-  /** Callback to be invoked on-scroll: ({ scrollLeft, scrollTop }) */
-  "onScroll": PropTypes.func.isRequired,
-
-  /** Element to attach scroll event listeners. Defaults to window. */
-  "scrollElement": PropTypes.oneOfType([PropTypes.any, function () {
-    return (typeof Element === "function" ? PropTypes.instanceOf(Element) : PropTypes.any).apply(this, arguments);
-  }]),
-
-  /**
-   * Wait this amount of time after the last scroll event before resetting child `pointer-events`.
-   */
-  "scrollingResetTimeInterval": PropTypes.number.isRequired,
-
-  /** Height used for server-side rendering */
-  "serverHeight": PropTypes.number.isRequired,
-
-  /** Width used for server-side rendering */
-  "serverWidth": PropTypes.number.isRequired
-}), _temp);
+}(React.PureComponent);
 
 _defineProperty(WindowScroller, "defaultProps", {
   onResize: function onResize() {},
@@ -284,4 +318,3 @@ _defineProperty(WindowScroller, "defaultProps", {
 });
 
 export { WindowScroller as default };
-import PropTypes from "prop-types";

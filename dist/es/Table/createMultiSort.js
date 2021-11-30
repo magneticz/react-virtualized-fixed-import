@@ -1,4 +1,41 @@
-export default function createMultiSort(sortCallback) {
+/*:: type SortDirection = 'ASC' | 'DESC';*/
+
+/*:: type SortParams = {
+  defaultSortDirection: SortDirection,
+  event: MouseEvent,
+  sortBy: string,
+};*/
+
+/*:: type SortDirectionMap = {[string]: SortDirection};*/
+
+/*:: type MultiSortOptions = {
+  defaultSortBy: ?Array<string>,
+  defaultSortDirection: ?SortDirectionMap,
+};*/
+
+/*:: type MultiSortReturn = {
+  /**
+   * Sort property to be passed to the `Table` component.
+   * This function updates `sortBy` and `sortDirection` values.
+   *-/
+  sort: (params: SortParams) => void,
+
+  /**
+   * Specifies the fields currently responsible for sorting data,
+   * In order of importance.
+   *-/
+  sortBy: Array<string>,
+
+  /**
+   * Specifies the direction a specific field is being sorted in.
+   *-/
+  sortDirection: SortDirectionMap,
+};*/
+export default function createMultiSort(sortCallback
+/*: Function*/
+)
+/*: MultiSortReturn*/
+{
   var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
       defaultSortBy = _ref.defaultSortBy,
       _ref$defaultSortDirec = _ref.defaultSortDirection,
@@ -14,7 +51,9 @@ export default function createMultiSort(sortCallback) {
     sortDirection[dataKey] = defaultSortDirection[dataKey] !== undefined ? defaultSortDirection[dataKey] : 'ASC';
   });
 
-  function sort(_ref2) {
+  function sort(_ref2)
+  /*: void*/
+  {
     var defaultSortDirection = _ref2.defaultSortDirection,
         event = _ref2.event,
         dataKey = _ref2.sortBy;

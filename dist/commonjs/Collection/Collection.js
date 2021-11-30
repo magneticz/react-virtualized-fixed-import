@@ -35,8 +35,6 @@ var _calculateSizeAndPositionData2 = _interopRequireDefault(require("./utils/cal
 
 var _getUpdatedOffsetForIndex = _interopRequireDefault(require("../utils/getUpdatedOffsetForIndex"));
 
-var _types = require("./types");
-
 /**
  * Renders scattered or non-linear data.
  * Unlike Grid, which renders checkerboard data, Collection can render arbitrarily positioned- even overlapping- data.
@@ -122,7 +120,9 @@ function (_React$PureComponent) {
 
   }, {
     key: "getScrollPositionForCell",
-    value: function getScrollPositionForCell(_ref) {
+    value: function getScrollPositionForCell(_ref)
+    /*: ScrollPosition*/
+    {
       var align = _ref.align,
           cellIndex = _ref.cellIndex,
           height = _ref.height,
@@ -158,7 +158,9 @@ function (_React$PureComponent) {
     }
   }, {
     key: "getTotalSize",
-    value: function getTotalSize() {
+    value: function getTotalSize()
+    /*: SizeInfo*/
+    {
       return {
         height: this._height,
         width: this._width

@@ -2,8 +2,21 @@ import _objectWithoutProperties from "@babel/runtime/helpers/objectWithoutProper
 import _classCallCheck from "@babel/runtime/helpers/classCallCheck";
 import _createClass from "@babel/runtime/helpers/createClass";
 import _defineProperty from "@babel/runtime/helpers/defineProperty";
+
+/*:: import type {Alignment, CellSizeGetter, VisibleCellRange} from '../types';*/
 import CellSizeAndPositionManager from './CellSizeAndPositionManager';
 import { getMaxElementSize } from './maxElementSize.js';
+/*:: type ContainerSizeAndOffset = {
+  containerSize: number,
+  offset: number,
+};*/
+
+/*:: type Params = {
+  maxScrollSize?: number,
+  cellCount: number,
+  cellSizeGetter: CellSizeGetter,
+  estimatedCellSize: number,
+};*/
 
 /**
  * Extends CellSizeAndPositionManager and adds scaling behavior for lists that are too large to fit within a browser's native limits.
@@ -29,27 +42,41 @@ function () {
 
   _createClass(ScalingCellSizeAndPositionManager, [{
     key: "areOffsetsAdjusted",
-    value: function areOffsetsAdjusted() {
+    value: function areOffsetsAdjusted()
+    /*: boolean*/
+    {
       return this._cellSizeAndPositionManager.getTotalSize() > this._maxScrollSize;
     }
   }, {
     key: "configure",
-    value: function configure(params) {
+    value: function configure(params
+    /*: {
+        cellCount: number,
+        estimatedCellSize: number,
+        cellSizeGetter: CellSizeGetter,
+      }*/
+    ) {
       this._cellSizeAndPositionManager.configure(params);
     }
   }, {
     key: "getCellCount",
-    value: function getCellCount() {
+    value: function getCellCount()
+    /*: number*/
+    {
       return this._cellSizeAndPositionManager.getCellCount();
     }
   }, {
     key: "getEstimatedCellSize",
-    value: function getEstimatedCellSize() {
+    value: function getEstimatedCellSize()
+    /*: number*/
+    {
       return this._cellSizeAndPositionManager.getEstimatedCellSize();
     }
   }, {
     key: "getLastMeasuredIndex",
-    value: function getLastMeasuredIndex() {
+    value: function getLastMeasuredIndex()
+    /*: number*/
+    {
       return this._cellSizeAndPositionManager.getLastMeasuredIndex();
     }
     /**
@@ -59,7 +86,9 @@ function () {
 
   }, {
     key: "getOffsetAdjustment",
-    value: function getOffsetAdjustment(_ref2) {
+    value: function getOffsetAdjustment(_ref2)
+    /*: number*/
+    {
       var containerSize = _ref2.containerSize,
           offset = _ref2.offset;
 
@@ -77,7 +106,9 @@ function () {
     }
   }, {
     key: "getSizeAndPositionOfCell",
-    value: function getSizeAndPositionOfCell(index) {
+    value: function getSizeAndPositionOfCell(index
+    /*: number*/
+    ) {
       return this._cellSizeAndPositionManager.getSizeAndPositionOfCell(index);
     }
   }, {
@@ -89,7 +120,9 @@ function () {
 
   }, {
     key: "getTotalSize",
-    value: function getTotalSize() {
+    value: function getTotalSize()
+    /*: number*/
+    {
       return Math.min(this._maxScrollSize, this._cellSizeAndPositionManager.getTotalSize());
     }
     /** See CellSizeAndPositionManager#getUpdatedOffsetForIndex */
@@ -123,7 +156,9 @@ function () {
 
   }, {
     key: "getVisibleCellRange",
-    value: function getVisibleCellRange(_ref4) {
+    value: function getVisibleCellRange(_ref4)
+    /*: VisibleCellRange*/
+    {
       var containerSize = _ref4.containerSize,
           offset = _ref4.offset;
       offset = this._safeOffsetToOffset({
@@ -137,7 +172,11 @@ function () {
     }
   }, {
     key: "resetCell",
-    value: function resetCell(index) {
+    value: function resetCell(index
+    /*: number*/
+    )
+    /*: void*/
+    {
       this._cellSizeAndPositionManager.resetCell(index);
     }
   }, {
@@ -150,7 +189,9 @@ function () {
     }
   }, {
     key: "_offsetToSafeOffset",
-    value: function _offsetToSafeOffset(_ref6) {
+    value: function _offsetToSafeOffset(_ref6)
+    /*: number*/
+    {
       var containerSize = _ref6.containerSize,
           offset = _ref6.offset;
 
@@ -172,7 +213,9 @@ function () {
     }
   }, {
     key: "_safeOffsetToOffset",
-    value: function _safeOffsetToOffset(_ref7) {
+    value: function _safeOffsetToOffset(_ref7)
+    /*: number*/
+    {
       var containerSize = _ref7.containerSize,
           offset = _ref7.offset;
 
@@ -198,6 +241,3 @@ function () {
 }();
 
 export { ScalingCellSizeAndPositionManager as default };
-import { bpfrpt_proptype_Alignment } from "../types";
-import { bpfrpt_proptype_CellSizeGetter } from "../types";
-import { bpfrpt_proptype_VisibleCellRange } from "../types";

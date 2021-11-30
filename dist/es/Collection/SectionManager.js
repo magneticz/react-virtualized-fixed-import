@@ -7,7 +7,13 @@ import _createClass from "@babel/runtime/helpers/createClass";
  * 
  */
 import Section from './Section';
+/*:: import type {Index, SizeAndPositionInfo} from './types';*/
+
 var SECTION_SIZE = 100;
+/*:: type RegisterCellParams = {
+  cellMetadatum: SizeAndPositionInfo,
+  index: number,
+};*/
 
 /**
  * Contains 0 to many Sections.
@@ -34,7 +40,9 @@ function () {
 
   _createClass(SectionManager, [{
     key: "getCellIndices",
-    value: function getCellIndices(_ref) {
+    value: function getCellIndices(_ref)
+    /*: Array<number>*/
+    {
       var height = _ref.height,
           width = _ref.width,
           x = _ref.x,
@@ -59,7 +67,9 @@ function () {
 
   }, {
     key: "getCellMetadata",
-    value: function getCellMetadata(_ref2) {
+    value: function getCellMetadata(_ref2)
+    /*: SizeAndPositionInfo*/
+    {
       var index = _ref2.index;
       return this._cellMetadata[index];
     }
@@ -67,7 +77,9 @@ function () {
 
   }, {
     key: "getSections",
-    value: function getSections(_ref3) {
+    value: function getSections(_ref3)
+    /*: Array<Section>*/
+    {
       var height = _ref3.height,
           width = _ref3.width,
           x = _ref3.x,
@@ -135,5 +147,3 @@ function () {
 }();
 
 export { SectionManager as default };
-import { bpfrpt_proptype_Index } from "./types";
-import { bpfrpt_proptype_SizeAndPositionInfo } from "./types";

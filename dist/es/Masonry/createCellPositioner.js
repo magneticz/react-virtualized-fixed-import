@@ -1,4 +1,20 @@
-export default function createCellPositioner(_ref) {
+/*:: import type {CellMeasurerCache, Positioner} from './Masonry';*/
+
+/*:: type createCellPositionerParams = {
+  cellMeasurerCache: CellMeasurerCache,
+  columnCount: number,
+  columnWidth: number,
+  spacer?: number,
+};*/
+
+/*:: type resetParams = {
+  columnCount: number,
+  columnWidth: number,
+  spacer?: number,
+};*/
+export default function createCellPositioner(_ref)
+/*: Positioner*/
+{
   var cellMeasurerCache = _ref.cellMeasurerCache,
       columnCount = _ref.columnCount,
       columnWidth = _ref.columnWidth,
@@ -26,7 +42,9 @@ export default function createCellPositioner(_ref) {
     };
   }
 
-  function initOrResetDerivedValues() {
+  function initOrResetDerivedValues()
+  /*: void*/
+  {
     // Track the height of each column.
     // Layout algorithm below always inserts into the shortest column.
     columnHeights = [];
@@ -36,7 +54,11 @@ export default function createCellPositioner(_ref) {
     }
   }
 
-  function reset(params) {
+  function reset(params
+  /*: resetParams*/
+  )
+  /*: void*/
+  {
     columnCount = params.columnCount;
     columnWidth = params.columnWidth;
     spacer = params.spacer;
@@ -46,5 +68,3 @@ export default function createCellPositioner(_ref) {
   cellPositioner.reset = reset;
   return cellPositioner;
 }
-import { bpfrpt_proptype_CellMeasurerCache } from "./Masonry";
-import { bpfrpt_proptype_Positioner } from "./Masonry";

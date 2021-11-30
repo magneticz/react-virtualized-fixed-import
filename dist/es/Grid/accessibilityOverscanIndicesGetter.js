@@ -1,3 +1,4 @@
+/*:: import type {OverscanIndicesGetterParams, OverscanIndices} from './types';*/
 export var SCROLL_DIRECTION_BACKWARD = -1;
 export var SCROLL_DIRECTION_FORWARD = 1;
 export var SCROLL_DIRECTION_HORIZONTAL = 'horizontal';
@@ -7,7 +8,9 @@ export var SCROLL_DIRECTION_VERTICAL = 'vertical';
  * This function ensures that overscanning doesn't exceed the available cells.
  */
 
-export default function defaultOverscanIndicesGetter(_ref) {
+export default function defaultOverscanIndicesGetter(_ref)
+/*: OverscanIndices*/
+{
   var cellCount = _ref.cellCount,
       overscanCellsCount = _ref.overscanCellsCount,
       scrollDirection = _ref.scrollDirection,
@@ -30,5 +33,3 @@ export default function defaultOverscanIndicesGetter(_ref) {
     };
   }
 }
-import { bpfrpt_proptype_OverscanIndicesGetterParams } from "./types";
-import { bpfrpt_proptype_OverscanIndices } from "./types";

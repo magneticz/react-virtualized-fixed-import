@@ -1,8 +1,8 @@
 "use strict";
 
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
 var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -27,18 +27,12 @@ var React = _interopRequireWildcard(require("react"));
 
 var _reactDom = require("react-dom");
 
-var _types = require("./types");
-
-var _propTypes = _interopRequireDefault(require("prop-types"));
-
-var _class, _temp;
-
 /**
  * Wraps a cell and measures its rendered content.
  * Measurements are stored in a per-cell cache.
  * Cached-content is not be re-measured.
  */
-var CellMeasurer = (_temp = _class =
+var CellMeasurer =
 /*#__PURE__*/
 function (_React$PureComponent) {
   (0, _inherits2["default"])(CellMeasurer, _React$PureComponent);
@@ -189,19 +183,8 @@ function (_React$PureComponent) {
     }
   }]);
   return CellMeasurer;
-}(React.PureComponent), (0, _defineProperty2["default"])(_class, "propTypes", process.env.NODE_ENV === 'production' ? null : {
-  "cache": function cache() {
-    return (typeof _types.bpfrpt_proptype_CellMeasureCache === "function" ? _types.bpfrpt_proptype_CellMeasureCache.isRequired ? _types.bpfrpt_proptype_CellMeasureCache.isRequired : _types.bpfrpt_proptype_CellMeasureCache : _propTypes["default"].shape(_types.bpfrpt_proptype_CellMeasureCache).isRequired).apply(this, arguments);
-  },
-  "children": _propTypes["default"].oneOfType([_propTypes["default"].func, _propTypes["default"].node]).isRequired,
-  "columnIndex": _propTypes["default"].number,
-  "index": _propTypes["default"].number,
-  "parent": _propTypes["default"].shape({
-    invalidateCellSizeAfterRender: _propTypes["default"].func,
-    recomputeGridSize: _propTypes["default"].func
-  }).isRequired,
-  "rowIndex": _propTypes["default"].number
-}), _temp); // Used for DEV mode warning check
+}(React.PureComponent); // Used for DEV mode warning check
+
 
 exports["default"] = CellMeasurer;
 (0, _defineProperty2["default"])(CellMeasurer, "__internalCellMeasurerFlag", false);
